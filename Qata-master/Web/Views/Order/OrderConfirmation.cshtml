@@ -1,0 +1,503 @@
+﻿
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="">
+    <div class="">
+        <div class="bg-white  ">
+            <h2 class="pt-3 pb-4 pl-4"><strong>Sipariş Onay </strong><i class="fas fa-arrow-left  border p-2  rounded-circle border-primary text-primary float-right" style="margin-right:2%;"></i></h2>
+        </div>
+        <div class="bg-white  mt-4" style="margin-left:2%;margin-right:2%;">
+            <div class="row bg-white rounded">
+
+                <div class="col-sm-12">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6 float-right pt-4 p-2 ">
+                        @*<a href="/Order/NewOrder"><i class="fa  fa-plus border p-2 mr-1 rounded-circle border-primary  btn-outline-primary float-right"></i></a>*@
+                        <a href="#!" onclick="gizleGoster('sonuc') "><i class="fas fa-filter border  p-2 mr-1 rounded-circle border-warning btn-outline-warning float-right"></i></a>
+                    </div>
+
+
+                </div>
+
+                <hr class="container-fluid bg-light pl-5" @*style="width:95%;"*@ />
+                <div class="col-sm-12">
+                    <div class="row" id="sonuc" style="display:none;">
+
+                        <div class="col-lg-3">
+                            <div class="form-group row p-2 ">
+                                <label class="font-weight-light">Temsilciler</label>
+                                <select class="form-control" id="selecttemsici">
+                                    @if (CurrentSession.Roles.Contains("Yonetim"))
+                                    {
+                                        <option value=" ">Temsilçi Seçiniz</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@CurrentSession.Name">@CurrentSession.Name</option>
+                                    }
+
+                                </select>
+                            </div>
+                        </div>   
+                        <div class="col-lg-3">
+                            <div class="form-group row p-2 ">
+                                <label class="font-weight-light">Sipariş Durumu</label>
+                                <select class="form-control" id="orderDurumu">
+                                    <option value="0">Onaya Gönderildi</option>
+                                    <option value="1">Logoya Gönderildi</option>
+                                    <option value="-1">Taslak</option>
+                                    <option value="2">Faturalandı</option>
+                                    <option value="3">Red Edildi</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group row p-2 ">
+                                <button class="btn btn-secondary mr-1 btn-raised   "><i class="fa fa-times"></i> Temizle</button>
+                                <button class="btn btn-warning mr-1 btn-raised" id="searchDiv"><i class="fa fa-search"></i> Uygula</button>
+                                <!--Buton Hover Effect-->
+                                <style>
+                                    .btn-raised {
+                                        transition: box-shadow .4s cubic-bezier(.25, .8, .25, 1), transform .4s cubic-bezier(.25, .8, .25, 1);
+                                        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26)
+                                    }
+
+                                        .btn-raised:not([disabled]):active,
+                                        .btn-raised:not([disabled]):focus,
+                                        .btn-raised:not([disabled]):hover {
+                                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .4);
+                                            transform: translate3d(0, -1px, 0)
+                                        }
+                                </style>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <table id="recordtable" class="table table-bordered pt-0 pb-0">
+                        <thead class="thead-light ">
+                            <tr>
+                                <th class="pt-1 pb-1">Müşteri</th>
+                                <th class="pt-1 pb-1">Temsilci</th>
+                                <th class="pt-1 pb-1">Sipariş Tutarı</th>
+                                <th class="pt-1 pb-1">Tarih</th>
+                                <th class="pt-1 pb-1">Sipariş Durumu</th>
+                                <th class="pt-1 pb-1"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+        var recordtable;
+        var stock = 0;
+        var toplammaliyet = 0;
+        var stockdizi = [];
+        var toplammaliyetdizi = [];
+        $(function () {
+            $('#searchDiv').click(function () {
+                recordtable.draw();
+            });
+            ///  $('#recordtable1_paginate').hide();
+
+            recordtable = $('#recordtable').DataTable({
+                "responsive": true,
+                "serverSide": true,
+                "searching": true,
+                "lengthChange": false,
+                //"jQueryUI": true,
+                "stateSave": false,
+                "pagingType": "full_numbers",
+                "ajax": {
+                    "url": "/Order/GetOrderConfirmayionDatatables",
+                    "type": "POST",
+                    "contentType": "application/json; charset=utf-8",
+                    "data": function (d) {
+                        //d.dataqueryname = _defaulttablename;
+                        d.additionalvalues = [$('#orderDurumu').val(), $('#selecttemsici').val()];
+                        return JSON.stringify(d);
+                        return d;
+                    }
+                },
+                "columns": [
+                    {
+                        "data": "Name"
+                    },
+                    {
+                        "data": "Slsman"
+                    },
+                    {
+                        "data": "TotalPrice", className: "text-center", "render": function (data, type, row) {
+                            return numeral(data).format('0,0.00');
+                        }
+                    },
+                    {
+                        "data": "OrderDate", className: "text-center", "render": function (data, type, row) {
+                            if (data != null && data != "")
+                                return moment(data).format("DD.MM.YYYY, h:mm:ss ");
+                            else
+                                return "";
+                        }
+                    },
+                    {
+                        "data": "Status", className: "text-center", "render": function (data, type, row) {
+
+                            var html = ``;
+                            if (data == -1) {
+                                html = `<span class="badge badge-secondary spnEtiket">Taslak</span>`;
+                            }
+                            if (data == 0) {
+                                html = `<span class="badge badge-danger badge-pill  spnEtiket">Onaya Gönderildi</span>`;
+                            }
+                            if (data == 1) {
+                                html = `<span class="badge badge-info badge-primary   spnEtiket">Logoya Gönderildi</span>`;
+                            }
+                            if (data == 2) {
+                                html = `<span class="badge badge-info badge-success spnEtiket">Faturalandı</span>`;
+                            }
+
+
+                            return html;
+                        }
+
+                    },
+                    {
+                        "data": "Id", className: "text-center", "render": function (data, type, row) {
+                            var html = ""
+
+                                + "<a data-id='" + data + "' class='btn btn-warning   btn-sm text-white  detail' href='/Order/UpdateOrder/" + data + "'>Güncelle</a>"
+                                + "<a data-logoid='" + data + "' class='btn btn-info   btn-sm text-white  ozet' >Özet</a>"
+                                + "<a  data-status='3' data-id='" + data + "' class='btn btn-danger  btn-sm text-white  ret'>Red Et</a>"
+                                + "<a data-status='1' data-id='" + data + "' class='btn btn-info  btn-sm text-white  onayla'>Onayla</a>"
+                                + "<a data-id='" + data + "' class='btn btn-danger  btn-sm text-white  delete'>Sil</a>";
+
+                            return html;
+                        }
+                    }
+                ]
+                ,
+                "rowCallback": function (row, data) {
+
+
+                }, "drawCallback": function (settings) {
+
+
+
+
+                }
+
+            });
+
+
+            $(".dataTable tbody").on("click", "a.delete", function () {
+                var id = $(this).attr("data-id");
+                $.confirm({
+                    title: 'Sil?',
+                    content: 'Bu kaydı silmek istediğinize emin misiniz?',
+                    autoClose: 'cancelAction|8000',
+                    buttons: {
+                        deleteUser: {
+                            text: 'Evet',
+                            action: function () {
+                                $.LoadingOverlay("show");
+                                $.ajax({
+                                    type: "Get",
+                                    url: "/Order/DeleteOrder/" + id,
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    success: function (msg) {
+
+                                        $.LoadingOverlay("hide");
+
+                                        if (msg.success) {
+                                            recordtable.draw();
+
+                                            utilities.onscreen(utilities.dil_ceviri("İşlem Başarılı", "kayit_basarili"));
+
+                                        } else {
+                                            recordtable.draw();
+                                            $.alert(msg.message);
+                                        }
+
+
+
+                                    }
+                                });
+                            }
+                        }, cancelAction: {
+                            text: 'Hayır',
+                            action: function () {
+
+
+                            }
+                        }
+                    }
+                });
+
+
+            });
+
+            $(".dataTable tbody").on("click", "a.onayla", function () {
+                var id = $(this).attr("data-id");
+                var status = $(this).attr("data-status");
+                $.LoadingOverlay("show");
+                $.ajax({
+                    type: "Get",
+                    url: "/Order/UpdateStatus?id=" + id + "&status=" + status,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (msg) {
+
+                        $.LoadingOverlay("hide");
+
+                        if (msg.success) {
+                            recordtable.draw();
+
+                            utilities.onscreen(utilities.dil_ceviri("İşlem Başarılı", "kayit_basarili"));
+
+                        } else {
+                            recordtable.draw();
+                            $.alert(msg.message);
+                        }
+
+
+
+                    }
+                });
+
+            });
+
+            $(".dataTable tbody").on("click", "a.ret", function () {
+                var id = $(this).attr("data-id");
+                var status = $(this).attr("data-status");
+                $.LoadingOverlay("show");
+                $.ajax({
+                    type: "Get",
+                    url: "/Order/UpdateStatusOnay?id=" + id + "&status=" + status,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (msg) {
+
+                        $.LoadingOverlay("hide");
+
+                        if (msg.success) {
+                            recordtable.draw();
+
+                            utilities.onscreen(utilities.dil_ceviri("İşlem Başarılı", "kayit_basarili"));
+
+                        } else {
+                            recordtable.draw();
+                            $.alert(msg.message);
+                        }
+
+
+
+                    }
+                });
+
+            });
+
+            $(".dataTable tbody").on("click", "a.ozet", function () {
+                var toplamtutarKdvDizi = [];
+                var toplamtutarDizi = [];
+                var toplamtutar = 0;
+                var toplamtutarKdv = 0;
+                var logoid = $(this).attr("data-logoid");
+
+                $.confirm({
+                    title: 'Şipariş Özeti',
+                    content: $("#formozet").html(),
+                    columnClass: 'col-md-8',
+                    containerFluid: true,
+                    buttons: {
+                        formSubmit: {
+                            text: 'Kapat',
+                            btnClass: 'btn-blue'
+
+                        }
+
+                    },
+                    onOpen: function () {
+                        var self = this;
+                        recordtable1 = $('#recordtable1').DataTable({
+                            "serverSide": true,
+                            "paging": false,
+                            "searching": false,
+                            "lengthChange": false,
+                            //"jQueryUI": true,
+                            "stateSave": false,
+                            "pagingType": "full_numbers",
+                            "ajax": {
+                                "url": "/Order/GetOrderItemByOrderIdDatatables",
+                                "type": "POST",
+                                "contentType": "application/json; charset=utf-8",
+                                "data": function (d) {
+                                    d.additionalvalues = [logoid];
+                                    return JSON.stringify(d);
+                                    return d;
+                                }
+                            },
+                            "columns": [
+                                {
+                                    "data": "ProductName"
+                                },
+                                {
+                                    "data": "Vat", className: "text-center"
+                                },
+                                {
+                                    "data": "UnitPrice", className: "text-center", "render": function (data, type, row) {
+
+                                        return numeral(data).format('0,0');
+
+                                    }
+                                },
+                                {
+                                    "data": "UnitsInStock", className: "text-center", "render": function (data, type, row) {
+
+                                        return numeral(data).format('0,0');
+
+                                    }
+                                }
+                                ,
+                                {
+                                    "data": null, className: "text-center", "render": function (data, type, row) {
+
+
+                                        return numeral(row.UnitPrice * row.UnitsInStock).format('0,0');
+                                    }
+                                }
+                           
+                            ]
+                            ,
+                            "rowCallback": function (row, data) {
+
+                                toplamtutarDizi.push(data.UnitPrice * data.UnitsInStock);
+                                toplamtutarKdvDizi.push((data.UnitPrice * data.UnitsInStock / 1.18));
+
+                            }, "drawCallback": function (settings) {
+
+
+                                toplamtutarDizi.forEach((element) => {
+                                    toplamtutar = toplamtutar + element;
+                                })
+                                toplamtutarKdvDizi.forEach((element) => {
+                                    toplamtutarKdv = toplamtutarKdv + element;
+                                })
+
+                                $('#toplamtutarKdvsiz').html(numeral(toplamtutar - toplamtutarKdv).format('0,0'))
+                                $('#toplamtutar').html(numeral(toplamtutar).format('0,0'))
+                                $('#toplamtutarKdv').html(numeral(toplamtutarKdv).format('0,0'))
+
+                                toplamtutarKdvDizi = [];
+                                toplamtutarDizi = [];
+                                toplamtutar = 0;
+                                toplamtutarKdv = 0;
+                            }
+
+                        });
+                    },
+                    onContentReady: function () {
+                        var jc = this;
+                        this.$content.find(".dataTable tbody").on("click", "a.sil", function () {
+                            var id = $(this).attr("data-id");
+                            DeleteNot(id)
+
+                            //  jc.$$formSubmit.trigger('click'); // reference the button and click it
+                        });
+
+                        this.$content.find("#kaydet").click(function () {
+                            var text = jc.$content.find('.text').val();
+                            AddNot(text, $("#username").val(), logoid)
+                            jc.$content.find('.text').val("")
+                        });
+                        this.$content.find("#notdurum").on('change', function () {
+
+                            jc.$content.find('.text').val($(this).val());
+                        });
+
+
+                        this.$content.find('form').on('submit', function (e) {
+                            // if the user submits the form by pressing enter in the field.
+                            e.preventDefault();
+                            jc.$$formSubmit.trigger('click'); // reference the button and click it
+                        });
+                    }
+                });
+
+            });
+        });
+
+    </script>
+    <script type="text/template" id="formozet">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <table id="recordtable1" class="table table-sm table-striped table-bordered dataTable">
+                    <thead class="thead-light ">
+                        <tr>
+                            <th class="pt-1 pb-1">AD</th>
+                            <th class="pt-1 pb-1">KDV</th>
+                            <th class="pt-1 pb-1">Fiyat</th>
+                            <th class="pt-1 pb-1">Miktar</th>
+                            <th class="pt-1 pb-1">Toplam</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+            <div class="col-md-9">
+
+
+
+            </div>
+            <div class="col-md-3">
+                <table class="table table-sm table-striped table-bordered dataTable">
+                    @*<tr>
+                    <th></th>
+                    <th></th>
+
+                </tr>*@
+
+                    <tr>
+                        <td class="text-center"><h4>Ara Toplam</h4></td>
+                        <td><h4 class="float-right " id="toplamtutarKdv"></h4> </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"> <h4>Kdv </h4></td>
+                        <td><h4 class="float-right " id="toplamtutarKdvsiz"></h4> </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><h4>Toplam</h4></td>
+                        <td><h4 class="float-right " id="toplamtutar"></h4> </td>
+                    </tr>
+                </table>
+
+
+
+            </div>
+        </div>
+    </script>
+}

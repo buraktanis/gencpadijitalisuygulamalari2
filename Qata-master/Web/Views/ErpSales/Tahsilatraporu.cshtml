@@ -1,0 +1,153 @@
+﻿@model dynamic
+
+
+
+@{
+    ViewData["Title"] = "Stok Maliyet";
+
+
+}
+
+
+@section Scripts{
+
+    <script type="text/javascript">
+        var recordtable;
+        var _defaulttablename = "stokmaliyetQuery";
+
+
+
+        var tip;
+        var stock = 0;
+        var toplammaliyet = 0;
+        var stockdizi = [];
+        var toplammaliyetdizi = [];
+
+        $(function () {
+            $('#recordtable').DataTable({
+                pageLength: 50,
+                paging: true,
+                searching: true,
+                buttons: [{
+                    extend: 'excel',
+                    exportOptions: {
+                        modifier: {
+                            page: 'all',
+                            search: 'none'
+                        }
+                    },
+                    //the remaining buttons here 
+                }],
+
+            });
+
+
+            $(".dataTable tbody").on("click", "a.btnsearch", function () {
+                var text = $(this).attr("data-text");
+                $('input[type=search]').val(text);
+                $('input[type=search]').keyup();
+                if (marka == '' || marka == null) {
+                    $('.filtre_silici').addClass('hidden');
+                }
+            });
+
+
+        });
+
+        /**/</script>
+
+
+}
+
+
+
+
+<div class="bg-white  ">
+    <h2 class="pt-3 pb-4 pl-4"><strong>Tahsilat Raporu  </strong></h2>
+</div>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-12">
+            <div class="card">
+
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card">
+
+                <div class="card-body">
+
+
+                    <div class="table-responsive">
+
+                        <table id="recordtable" class="table table-sm table-bordered dataTable">
+                            <thead class="thead-light">
+
+                                <tr>
+                                    <th> Sorumlu </th>
+                                    <th>Kod </th>
+                                    <th> Ünvan  </th>
+                                    <th>GECEN GUN  </th>
+                                    <th>Tutar </th>
+                                    <th>Modül </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+                                        <td>
+                                            <a class="btn btn-light btnsearch" data-text="@item.temsilci">@item.temsilci</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-light btnsearch" data-text="@item.kod">@item.kod</a>
+
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-light btnsearch" data-text=" @item.unvan"> @item.unvan</a>
+                                        </td>
+                                        <td>
+
+                                            @item.GECEN_GUN
+                                        </td>
+
+                                        <td>
+                                            @string.Format("{0:C0}", item.TUTAR)
+
+                                        </td>
+
+                                        @if (item.MODÜL == "VADE GEÇMİŞ!")
+                                        {
+                                            <td style="background-color: #d72f2f" class="text-center text-white">
+
+                                                @item.MODÜL
+                                            </td>
+
+                                        }
+                                        else
+                                        {
+                                            <td>
+
+                                                @item.MODÜL
+                                            </td>
+                                        }
+
+
+
+
+                                    </tr>
+
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
