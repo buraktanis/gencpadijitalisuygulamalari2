@@ -1,298 +1,929 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head runat="server">
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
-    <meta name="author" content="Gencpa" />
-    <link rel="shortcut icon" href="../assets/global/img/favicon.png" />
-    <meta itemprop="name" content="@ViewData["Title"]" />
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="~/img/favicon.png" />
+    <meta charset="UTF-8">
+    <title>Gençpa ERP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- Primary Meta Tags -->
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="title" content="Volt - Free Bootstrap 5 Dashboard">
+    <meta name="author" content="Themesberg">
+    <meta name="description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
+    <meta name="keywords" content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, themesberg, themesberg dashboard, themesberg admin dashboard" />
 
-    <title>Yönetim Paneli</title>
-    <!-- Custom CSS -->
-    <link href="/admin/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
-    <!-- Custom CSS -->
-    <link href="/admin/dist/css/style.min.css" rel="stylesheet" />
-    <link href="/admin/dist/stil.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-html5-1.6.1/b-print-1.6.1/datatables.min.css" />
-    @*<link href="/admin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />*@
-    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/admin/assets/libs/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- Favicon -->
+    <link rel="stylesheet" href="~/tema/font/iconsmind-s/css/iconsminds.css" />
+    <link rel="stylesheet" href="~/tema/font/simple-line-icons/css/simple-line-icons.css" />
+    <link rel="stylesheet" href="~/tema/css/vendor/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/tema/css/vendor/bootstrap.rtl.only.min.css" />
+    <link rel="stylesheet" href="~/tema/css/vendor/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="~/tema/css/vendor/select2.min.css" />
+    <link rel="stylesheet" href="~/tema/css/vendor/select2-bootstrap.min.css" />
+    <link rel="stylesheet" href="~/tema/css/vendor/component-custom-switch.min.css" />
     <link href="/admin/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet" />
-    <link href="/admin/assets/libs/toastr/build/toastr.min.css" rel="stylesheet" />
 
-    <link href="~/css/site.css" rel="stylesheet" />
+
+
+
+    @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" />*@
+
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-html5-1.6.1/b-print-1.6.1/datatables.min.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-
-
-    <meta name="theme-color" content="#ffffff" />
     @RenderSection("Styles", false)
-    <style type="text/css">
-        .first-level .has-arrow::after {
-            top: 16px;
-        }
-    </style>
+
+
+    @*<link href="~/Toast/css/toast.css" rel="stylesheet" />*@
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="120x120" href="~/volt/html&css/assets/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/volt/html&css/assets/img/favicon/gencpapng2.1.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/volt/html&css/assets/img/favicon/gencpapng2.1.png">
+    <link rel="manifest" href="~/volt/html&css/assets/img/favicon/site.webmanifest">
+    <link rel="mask-icon" href="~/volt/html&css/assets/img/favicon/safari-pinned-tab.svg" color="#ffffff">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <link type="text/css" href="~/volt/html&css/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+    <link type="text/css" href="~/volt/html&css/vendor/notyf/notyf.min.css" rel="stylesheet">
+    <link type="text/css" href="~/volt/html&css/css/volt.css" rel="stylesheet">
+    @RenderSection("Styles", false)
+
+
 </head>
 
+<body id="app-container" class="menu-sub-hidden show-spinner right-menu">
 
-<body>
-    <div id="main-wrapper">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-        <header class="topbar" data-navbarbg="skin5">
-            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin5">
-                    <!-- This is for the sidebar toggle which is visible on mobile only -->
-                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
-                    <!-- ============================================================== -->
-                    <!-- Logo -->
-                    <!-- ============================================================== -->
-                    <a class="navbar-brand" href="/Home/Index">
-                        <!-- Logo icon -->
-                        <b class="logo-icon p-l-10">
-                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            <!-- Dark Logo icon -->
+    <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
+        <a class="navbar-brand me-lg-5" href="/">
+            <img class="navbar-brand-dark" src="https://gencpa.com/wp-content/uploads/2020/01/logo.png" alt="Volt logo" />
+            <img class="navbar-brand-light" src="https://gencpa.com/wp-content/uploads/2020/01/logo.png" alt="Volt logo" />
+        </a>
+        <div class="d-flex align-items-center">
+            <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <nav id="sidebarMenu" class="sidebar d-lg-block bg-gray-800 text-white collapse" data-simplebar>
+        <div class="sidebar-inner px-4 pt-3">
+
+            <ul class="nav flex-column pt-3 pt-md-0">
+                <li style="margin-left:8px;" class="nav-item">
+                    <a href="/Home/Index" class="nav-link d-flex align-items-center">
+                        <span class="sidebar-icon">
+                            <img src="~/volt/logo2.svg" style="margin-left:40px;">
+                        </span>
+                    </a>
+                </li>
 
 
-                            <img src="/admin/images/logo.png" alt="AdminPanel" style="width:100%" class="light-logo" />
+                <li role="separator" class="dropdown-divider  border-gray-700"></li>
 
-                        </b>
+
+                <li class="nav-item">
+
+                    <span class="nav-link  collapsed  d-flex justify-content-between align-items-center"
+                          data-bs-toggle="collapse" data-bs-target="#submenu-system">
+                        <span>
+                            <a href="#submenu-system">
+                                <i class="simple-icon-basket-loaded" style="color:#ffcc00"></i>
+                                <span class="sidebar-text" style="margin-left:20px;">Sistem Tanımları</span>
+                            </a>
+                        </span>
+                        <span class="link-arrow">
+                            <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        </span>
+                    </span>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-system" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Item/Index">
+                                    <i class="simple-icon-basket-loaded" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Malzemeler</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-system" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Configure/Index/1">
+                                    <i class="simple-icon-basket-loaded" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Müşteri Tipi</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-system" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Configure/Index/2">
+                                    <i class="simple-icon-basket-loaded" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Müşteri Türü</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-system" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Configure/Index/3">
+                                    <i class="simple-icon-basket-loaded" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Müşteri Durumu</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-system" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Configure/Index/4">
+                                    <i class="simple-icon-basket-loaded" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Müşteri Sınıfı</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-system" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Configure/Index/5">
+                                    <i class="simple-icon-basket-loaded" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Bölge</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-system" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Configure/Index/6">
+                                    <i class="simple-icon-basket-loaded" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Depo</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-system" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Configure/Index/7">
+                                    <i class="simple-icon-basket-loaded" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Ödeme Tipi</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-system" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Configure/Index/8">
+                                    <i class="simple-icon-basket-loaded" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Teslimat Tipi</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-system" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Configure/Index/9">
+                                    <i class="simple-icon-basket-loaded" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Banka Bilgilerimiz</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-system" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Configure/Index/10">
+                                    <i class="simple-icon-basket-loaded" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Kargo Bilgileri</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-system" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Configure/Index/11">
+                                    <i class="simple-icon-basket-loaded" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Notlar</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-system" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Settings/Update">
+                                    <i class="simple-icon-basket-loaded" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Gençpa</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </li>
+
+                <li role="separator" class="dropdown-divider  border-gray-700"></li>
+
+                <li class="nav-item">
+
+                    <span class="nav-link  collapsed  d-flex justify-content-between align-items-center"
+                          data-bs-toggle="collapse" data-bs-target="#submenu-sales">
+                        <span>
+                            <a href="#submenu-sales">
+                                <i class="simple-icon-basket-loaded" style="color:#ffcc00"></i>
+                                <span class="sidebar-text" style="margin-left:20px;">Satış</span>
+                            </a>
+                        </span>
+                        <span class="link-arrow">
+                            <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        </span>
+                    </span>
+
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-sales" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/ErpSales/Sale">
+                                    <i class="simple-icon-basket-loaded" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Sipariş Listesi</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>  @*else
+                        {
+                            <div style="margin-left:29px;" class="multi-level collapse "
+                             role="list" id="submenu-sales" aria-expanded="false">
+                                <ul class="flex-column nav">
+                                    <li class="nav-item">
+                                        <a href="/satis/siparislistesisatis">
+                                            <i class="simple-icon-basket-loaded" style="color:#b8b8b4"></i>
+                                            <span class="d-inline-block" style="margin-left:5px;">Sipariş Listesi</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                    *@
+
+
+
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-sales" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/ErpSales/cariekstre">
+                                    <i class="simple-icon-book-open" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Cari Ekstresi</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    @if (CurrentSession.Roles.Contains("Yonetim"))
+                    {
+
+        <div style="margin-left:29px;" class="multi-level collapse "
+             role="list" id="submenu-sales" aria-expanded="false">
+            <ul class="flex-column nav">
+                <li class="nav-item">
+                    <a href="/ErpSales/Alis">
+                        <i class="simple-icon-list" style="color:#b8b8b4"></i>
+                        <span class="d-inline-block" style="margin-left:5px;">Alış Listesi</span>
+                    </a>
+                </li>
+            </ul>
+        </div>}
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-sales" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/ErpSales/gtstemsilci">
+                                    <i class="simple-icon-book-open" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Bayi Sözleşmeleri</span>
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-sales" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/ErpSales/iade">
+                                    <i class="simple-icon-book-open" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">İade Raporu</span>
+                                    <span style="text-align:right">
+                                        <span class="badge badge-sm bg-secondary ms-1 text-gray-800">Yeni</span>
+                                    </span>
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-sales" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/ErpSales/ciro">
+                                    <i class="simple-icon-book-open" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Temsilci Ciro</span>
+                                    <span style="text-align:right;">
+                                        <span class="badge badge-sm bg-secondary ms-1 text-gray-800">Yeni</span>
+                                    </span>
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-sales" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/ErpSales/satisanaliz">
+                                    <i class="simple-icon-book-open" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Satış Analiz</span>
+                                    <span style="text-align:right;">
+                                        <span class="badge badge-sm bg-secondary ms-1 text-gray-800">Yeni</span>
+                                    </span>
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-sales" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/ErpSales/top5">
+                                    <i class="simple-icon-book-open" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">TOP 5 Satış</span>
+                                    <span style="text-align:right;">
+                                        <span class="badge badge-sm bg-secondary ms-1 text-gray-800">Yeni</span>
+                                    </span>
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-sales" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/ErpSales/Tahsilatraporu">
+                                    <i class="simple-icon-book-open" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Tahsilat Raporu</span>
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div> @*
+                        <div style="margin-left:29px;" class="multi-level collapse "
+                             role="list" id="submenu-sales" aria-expanded="false">
+                            <ul class="flex-column nav">
+                                <li class="nav-item">
+                                    <a href="/satis/fiyatlistesi" target="_blank">
+                                        <i class="simple-icon-calculator" style="color:#b8b8b4"></i>
+                                        <span class="d-inline-block" style="margin-left:5px;">Fiyat Listesi</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>*@
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-sales" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/ErpSales/fibabank">
+                                    <i class="simple-icon-basket-loaded" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Fibabank</span>
+                                    <span style="text-align:right;">
+                                        <span class="badge badge-sm bg-secondary ms-1 text-gray-800">Yeni</span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </li>
+
+
+
+                <li role="separator" class="dropdown-divider  border-gray-700"></li>
+
+                <li class="nav-item">
+
+                    <span class="nav-link  collapsed  d-flex justify-content-between align-items-center"
+                          data-bs-toggle="collapse" data-bs-target="#submenu-customer">
+                        <span>
+                            <a href="#submenu-customer">
+                                <i class="simple-icon-basket-loaded" style="color:#ffcc00"></i>
+                                <span class="sidebar-text" style="margin-left:20px;">Müşteri</span>
+                            </a>
+                        </span>
+                        <span class="link-arrow">
+                            <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        </span>
+                    </span>
+
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-customer" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Customer/AddCustomer">
+                                    <i class="simple-icon-shuffle" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Müşteri Tanımlama</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-customer" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Customer/GetAllCustomers">
+                                    <i class="simple-icon-shuffle" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Müşteri Listem</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-customer" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Customer/CustomerConfirmation">
+                                    <i class="simple-icon-shuffle" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Cari Onay</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-customer" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/BigData/Index">
+                                    <i class="simple-icon-shuffle" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Potansiyel Bayi Listem</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li role="separator" class="dropdown-divider  border-gray-700"></li>
+
+                <li class="nav-item">
+
+                    <span class="nav-link  collapsed  d-flex justify-content-between align-items-center"
+                          data-bs-toggle="collapse" data-bs-target="#submenu-order">
+                        <span>
+                            <a href="#submenu-order">
+                                <i class="simple-icon-basket-loaded" style="color:#ffcc00"></i>
+                                <span class="sidebar-text" style="margin-left:20px;">Sipariş</span>
+                            </a>
+                        </span>
+                        <span class="link-arrow">
+                            <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        </span>
+                    </span>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-order" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Order/NewOrder">
+                                    <i class="simple-icon-shuffle" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Sipariş Oluştur</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-order" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Order">
+                                    <i class="simple-icon-shuffle" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Sipariş Listem</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div> @if (CurrentSession.Roles.Contains("Yonetim"))
+                    {
+        <div style="margin-left:29px;" class="multi-level collapse "
+             role="list" id="submenu-order" aria-expanded="false">
+            <ul class="flex-column nav">
+                <li class="nav-item">
+                    <a href="/Order/OrderConfirmation">
+                        <i class="simple-icon-shuffle" style="color:#b8b8b4"></i>
+                        <span class="d-inline-block" style="margin-left:5px;">Sipariş Onay</span>
+                    </a>
+                </li>
+            </ul>
+        </div>}
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-order" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/Order/StockControl">
+                                    <i class="simple-icon-shuffle" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Stok Durumu</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </li>
+
+                <li class="nav-item">
+                    <a href="https://www.gencpaonline.com/" target="_blank">
+                        <span class="nav-link d-flex justify-content-between align-items-center"
+                              data-bs-target="#https://www.gencpaonline.com/">
+                            <span>
+                                <svg style="color:#ffcc00" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wechat" viewBox="0 0 16 16">
+                                    <path d="M11.176 14.429c-2.665 0-4.826-1.8-4.826-4.018 0-2.22 2.159-4.02 4.824-4.02S16 8.191 16 10.411c0 1.21-.65 2.301-1.666 3.036a.324.324 0 0 0-.12.366l.218.81a.616.616 0 0 1 .029.117.166.166 0 0 1-.162.162.177.177 0 0 1-.092-.03l-1.057-.61a.519.519 0 0 0-.256-.074.509.509 0 0 0-.142.021 5.668 5.668 0 0 1-1.576.22ZM9.064 9.542a.647.647 0 1 0 .557-1 .645.645 0 0 0-.646.647.615.615 0 0 0 .09.353Zm3.232.001a.646.646 0 1 0 .546-1 .645.645 0 0 0-.644.644.627.627 0 0 0 .098.356Z" />
+                                    <path d="M0 6.826c0 1.455.781 2.765 2.001 3.656a.385.385 0 0 1 .143.439l-.161.6-.1.373a.499.499 0 0 0-.032.14.192.192 0 0 0 .193.193c.039 0 .077-.01.111-.029l1.268-.733a.622.622 0 0 1 .308-.088c.058 0 .116.009.171.025a6.83 6.83 0 0 0 1.625.26 4.45 4.45 0 0 1-.177-1.251c0-2.936 2.785-5.02 5.824-5.02.05 0 .1 0 .15.002C10.587 3.429 8.392 2 5.796 2 2.596 2 0 4.16 0 6.826Zm4.632-1.555a.77.77 0 1 1-1.54 0 .77.77 0 0 1 1.54 0Zm3.875 0a.77.77 0 1 1-1.54 0 .77.77 0 0 1 1.54 0Z" />
+                                </svg>
+                                <span class="sidebar-text" style="margin-left:20px;">Bayi</span>
+                            </span>
+                            <span>
+                                <span class="badge badge-sm bg-secondary ms-1 text-gray-800">B2B</span>
+                            </span>
+                        </span>
 
                     </a>
-
-                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
-                </div>
-
-                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-
-                    <ul class="navbar-nav float-left mr-auto">
-                        <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
-
-                    </ul>
-
-                    <ul class="navbar-nav float-right">
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/admin/images/user.png" alt="user" class="rounded-circle" width="31"></a>
-                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
-
-
-                            </div>
-                        </li>
-
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <aside class="left-sidebar" data-sidebarbg="skin5">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav" class="p-t-30">
-                        <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Home/Index" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Genel Bakış</span></a></li>
-                        @if (CurrentSession.Roles.Contains("Yonetim"))
-                        {
-                    <li class="sidebar-item">
-                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Sistem Tanımları  </span></a>
-                        <ul aria-expanded="false" class="collapse  first-level">
-                            <li class="sidebar-item"><a href="/Item/Index" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Malzemeler  </span></a></li>
-                            <li class="sidebar-item"><a href="/Configure/Index/1" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Müşteri Tipi </span></a></li>
-                            <li class="sidebar-item"><a href="/Configure/Index/2" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Müşteri Türü  </span></a></li>
-                            <li class="sidebar-item"><a href="/Configure/Index/3" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Müşteri Durumu </span></a></li>
-                            <li class="sidebar-item"><a href="/Configure/Index/4" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Müşteri Sınıfı</span></a></li>
-                            <li class="sidebar-item"><a href="/Configure/Index/5" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Bölge </span></a></li>
-                            <li class="sidebar-item"><a href="/Configure/Index/6" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Depo </span></a></li>
-                            <li class="sidebar-item"><a href="/Configure/Index/7" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Ödeme Tipi </span></a></li>
-                            <li class="sidebar-item"><a href="/Configure/Index/8" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Teslimat Tipi</span></a></li>
-                            <li class="sidebar-item"><a href="/Configure/Index/9" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Banka Bilgilerimiz IBAN</span></a></li>
-                            <li class="sidebar-item"><a href="/Configure/Index/10" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Kargo Bilgileri </span></a></li>
-                            <li class="sidebar-item"><a href="/Configure/Index/11" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Notlar </span></a></li>
-                            <li class="sidebar-item"><a href="/Settings/Update" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Gençpa</span></a></li>
-
-                        </ul>
-                    </li>}
-
-                        <li class="sidebar-item">
-                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu">Satış</span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-
-                                <li class="sidebar-item"><a asp-controller="ErpSales" asp-action="Sale" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Sipariş Listem</span></a></li>
-                                <li class="sidebar-item"><a asp-controller="ErpSales" asp-action="Tahsilatraporu" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Tahsilat raporu </span></a></li>
-                                <li class="sidebar-item"><a asp-controller="ErpSales" asp-action="fibabank" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Fibabank </span></a></li>
-                                <li class="sidebar-item"><a asp-controller="ErpSales" asp-action="cariekstre" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Cari Ekstresi </span></a></li>
-                                <li class="sidebar-item"><a asp-controller="ErpSales" asp-action="gtstemsilci" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Bayi Sözleşmeleri </span></a></li>
-                                <li class="sidebar-item"><a asp-controller="ErpSales" asp-action="iade" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">İade Raporu </span></a></li>
-                                <li class="sidebar-item"><a asp-controller="ErpSales" asp-action="ciro" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Temsilci Ciro</span></a></li>
-                                <li class="sidebar-item"><a asp-controller="ErpSales" asp-action="satisanaliz" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Satış Analiz</span></a></li>
-                                <li class="sidebar-item"><a asp-controller="ErpSales" asp-action="top5" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Top 5 Satış</span></a></li>
-
-                                @if (CurrentSession.Roles.Contains("Yonetim"))
-                                {
-                            <li class="sidebar-item"><a asp-controller="ErpSales" asp-action="Alis" class="sidebar-link"><i class="fas fa-angle-double-right"></i><span class="hide-menu">Aliş</span></a></li>}
-                            </ul>
-                        </li>
-                        @if (CurrentSession.Roles.Contains("Yonetim"))
-                        {
-                        <li class="sidebar-item">
-                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu">Finans Raporları</span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-
-                                <li class="sidebar-item"><a asp-controller="ErpSales" asp-action="aylikkarne" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Aylık Karne</span></a></li>
-                                <li class="sidebar-item"><a asp-controller="ErpSales" asp-action="yillikkarne" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Yıllık Karne</span></a></li>
-
-                            </ul>
-                        </li>}
-                        <li class="sidebar-item">
-                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu">Satış Raporları</span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-
-                                <li class="sidebar-item"><a asp-controller="ErpReport" asp-action="bayiperformans" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Bayi Performans</span></a></li>
-                                <li class="sidebar-item"><a asp-controller="ErpReport" asp-action="personelperformans" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Personel Performans</span></a></li>
-
-                            </ul>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu">Performans</span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-
-                                <li class="sidebar-item"><a asp-controller="ErpSales" asp-action="kisiay" target="_blank" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Kişi/Ay</span></a></li>
-                                <li class="sidebar-item"><a asp-controller="ErpSales" asp-action="kisigun" target="_blank" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Kişi/Gün</span></a></li>
-                                <li class="sidebar-item"><a asp-controller="ErpSales" asp-action="markaay" target="_blank" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Marka/Ay </span></a></li>
-                                <li class="sidebar-item"><a asp-controller="ErpSales" asp-action="markagun" target="blank" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Marka/Gün</span></a></li>
-
-
-
-                            </ul>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu">Müşteri </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a asp-controller="Customer" asp-action="AddCustomer" class="sidebar-link"><i class="fas fa-angle-double-right"></i><span class="hide-menu">Müşteri Tanımlama</span></a></li>
-                                <li class="sidebar-item"><a asp-controller="Customer" asp-action="GetAllCustomers" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Müşteri Listem</span></a></li>
-                                @if (CurrentSession.Roles.Contains("Yonetim"))
-                                {
-                    <li class="sidebar-item"><a href="/Customer/CustomerConfirmation" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Cari Onay </span></a></li>}
-                                <li class="sidebar-item"><a href="/BigData/Index" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Potansiyel Bayi Listem </span></a></li>
-                            </ul>
-                        </li>
-
-
-                        <li class="sidebar-item">
-                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-shopping-cart"></i><span class="hide-menu">Sipariş </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a asp-controller="Order" asp-action="NewOrder" class="sidebar-link"><i class="fas fa-angle-double-right"></i><span class="hide-menu">Sipariş Oluştur</span></a></li>
-                                <li class="sidebar-item"><a asp-controller="Order" asp-action="Index" class="sidebar-link"><i class="fas fa-angle-double-right"></i><span class="hide-menu">Sipariş Listem </span></a></li>
-                                @if (CurrentSession.Roles.Contains("Yonetim"))
-                                {
-                    <li class="sidebar-item"><a asp-controller="Order" asp-action="OrderConfirmation" class="sidebar-link"><i class="fas fa-angle-double-right"></i><span class="hide-menu">Sipariş Onay </span></a></li>}
-                                <li class="sidebar-item"><a asp-controller="Order" asp-action="StockControl" class="sidebar-link"><i class="fas fa-angle-double-right"></i><span class="hide-menu">Stok Durumu  </span></a></li>
-                            </ul>
-                        </li>
-                        <li class="sidebar-item">
-                            <a asp-controller="ErpSales" asp-action="imei" class="sidebar-link"><i class="fas fa-angle-double-right"></i><span class="hide-menu">IMEI Sorgulama</span></a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a asp-controller="ErpSales" asp-action="kargo" class="sidebar-link"><i class="fas fa-angle-double-right"></i><span class="hide-menu">Kargo</span></a>
-                        </li>
-                        @if (CurrentSession.Roles.Contains("Yonetim"))
-                        {
-                    <li class="sidebar-item">
-                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-key"></i><span class="hide-menu">Kullanıcılar </span></a>
-                        <ul aria-expanded="false" class="collapse  first-level">
-                            <li class="sidebar-item"><a asp-controller="AppUser" asp-action="GetAllAppUsers" class="sidebar-link"><i class="fas fa-angle-double-right"></i><span class="hide-menu">Kullanıcılar</span></a></li>
-                            <li class="sidebar-item"><a asp-controller="AppUser" asp-action="Add" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Kullanıcı Ekle </span></a></li>
-
-
-                        </ul>
-                    </li>}
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark" href="/Home/Gencpa" aria-expanded="false"><i class="fas fa-book"></i><span class="hide-menu">GENÇPA </span></a>
-
-                        </li>
-                        <li class="sidebar-item"><a asp-controller="Auth" asp-action="Logout" class="sidebar-link"><i class="fas fa-angle-double-right "></i><span class="hide-menu">Çıkış </span></a></li>
+                </li>
 
 
 
 
 
+                <li role="separator" class="dropdown-divider  border-gray-700"></li>
 
-                    </ul>
-                </nav>
-                <!-- End Sidebar navigation -->
-            </div>
-            <!-- End Sidebar scroll-->
-        </aside>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
-        <div class="page-wrapper" style="min-height:900px">
 
-            @RenderBody()
-            <footer class="footer text-center">
-                <a href="" target="_blank">
-                    <img src="http://one.com/uploads/domainfiles/one.com/logo.png" alt="" style="height: 10px" />
+                @if (CurrentSession.Roles.Contains("Yonetim"))
+                {
+    <li class="nav-item">
+        <span class="nav-link  collapsed  d-flex justify-content-between align-items-center"
+              data-bs-toggle="collapse" data-bs-target="#submenu-app">
+            <span>
+                <a href="#finasrapor">
+                    <i class="iconsminds-digital-drawing" style="color:#ffcc00"></i>
+                    <span class="sidebar-text" style="margin-left:15px;">Finans Raporları</span>
                 </a>
-            </footer>
+            </span>
+            <span class="link-arrow">
+                <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+            </span>
+        </span>
+        <div style="margin-left:29px;" class="multi-level collapse "
+             role="list" id="submenu-app" aria-expanded="false">
+            <ul class="flex-column nav">
+                <li class="nav-item">
+                    <a href="/rapor/gelirgiderraporu?yil=@Helpertype.currentyaer&ay=@Helpertype.Aylarlistwihtcomma">
+                        <i class="simple-icon-shuffle" style="color:#b8b8b4"></i>
+                        <span class="d-inline-block" style="margin-left:5px;">Gelir-Gider Raporu</span>
+                    </a>
+                </li>
+            </ul>
         </div>
-    </div>
-    <!-- ============================================================== -->
-
-    <div class="preloader">
-        <div class="lds-ripple">
-            <div class="lds-pos"></div>
-            <div class="lds-pos"></div>
+        <div style="margin-left:29px;" class="multi-level collapse "
+             role="list" id="submenu-app" aria-expanded="false">
+            <ul class="flex-column nav">
+                <li>
+                    <a href="/rapor/karzararraporu?yil=@Helpertype.currentyaer&ay=@Helpertype.Aylarlistwihtcomma">
+                        <i class="simple-icon-question" style="color:#b8b8b4"></i>
+                        <span class="d-inline-block" style="margin-left:5px;">Kar Zarar Raporu</span>
+                    </a>
+                </li>
+            </ul>
         </div>
-    </div>
+        <div style="margin-left:29px;" class="multi-level collapse "
+             role="list" id="submenu-app" aria-expanded="false">
+            <ul class="flex-column nav">
+                <li class="nav-item">
+                    <a href="/ErpSales/aylikkarne">
+                        <i class="simple-icon-list" style="color:#b8b8b4"></i>
+                        <span class="d-inline-block" style="margin-left:5px;">Aylık Karne</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div style="margin-left:29px;" class="multi-level collapse "
+             role="list" id="submenu-app" aria-expanded="false">
+            <ul class="flex-column nav">
+                <li class="nav-item">
+                    <a href="/ErpSales/yillikkarne?yil=@Helpertype.currentyaer&ay=@Helpertype.Aylarlistwihtcomma">
+                        <i class="simple-icon-list" style="color:#b8b8b4"></i>
+                        <span class="d-inline-block" style="margin-left:5px;">Yıllık Karne</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
 
-    <div class="modal fade" id="alertmodal" role="dialog" style="z-index:2000">
-        <div class="modal-dialog shadow">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title"></h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default alertmodelclose" data-dismiss="modal">Kapat</button>
-                </div>
+        <div style="margin-left:29px;" class="multi-level collapse "
+             role="list" id="submenu-app" aria-expanded="false">
+            <ul class="flex-column nav">
+                <li class="nav-item">
+                    <a href="/accountcode/accountcodelist">
+                        <i class="simple-icon-calculator" style="color:#b8b8b4"></i>
+                        <span class="d-inline-block" style="margin-left:5px;">Muhasebe Kodları</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>
+
+                    <li role="separator" class="dropdown-divider  border-gray-700"></li>
+}
+
+
+
+
+
+                <li class="nav-item">
+                    <span class="nav-link  collapsed  d-flex justify-content-between align-items-center"
+                          data-bs-toggle="collapse" data-bs-target="#submenu-salesreports">
+                        <span>
+                            <a href="#salersrapor">
+                                <i class="iconsminds-pie-chart-3" style="color:#ffcc00"></i>
+                                <span class="sidebar-text" style="margin-left:15px">Satış Raporları</span>
+                            </a>
+                        </span>
+                        <span class="link-arrow">
+                            <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        </span>
+                    </span>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-salesreports" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/ErpReport/personelperformans">
+                                    <i class="simple-icon-list" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Personel Performans </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-salesreports" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/ErpReport/bayiperformans">
+                                    <i class="simple-icon-list" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Bayi Performans </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </li>
+                <li role="separator" class="dropdown-divider  border-gray-700"></li>
+
+
+
+
+
+
+                <li class="nav-item">
+                    <span class="nav-link  collapsed  d-flex justify-content-between align-items-center"
+                          data-bs-toggle="collapse" data-bs-target="#submenu-performans">
+                        <span>
+                            <a href="#performance">
+                                <i class="iconsminds-line-chart-1" style="color:#ffcc00"></i>
+                                <span class="sidebar-text" style="margin-left:15px">Performans</span>
+                            </a>
+                        </span>
+                        <span class="link-arrow">
+                            <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        </span>
+                    </span>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-performans" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/chart/personmonth" target="_blank">
+                                    <i class="simple-icon-list" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Kişi / Ay</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-performans" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/chart/personday" target="_blank">
+                                    <i class="simple-icon-book-open" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Kişi / Gün</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-performans" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/chart/brandmonth" target="_blank">
+                                    <i class="simple-icon-picture" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Marka / Ay</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left:29px;" class="multi-level collapse "
+                         role="list" id="submenu-performans" aria-expanded="false">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a href="/chart/brandday" target="_blank">
+                                    <i class="simple-icon-hourglass" style="color:#b8b8b4"></i>
+                                    <span class="d-inline-block" style="margin-left:5px;">Marka / Gün</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </li>
+
+                <li role="separator" class="dropdown-divider  border-gray-700"></li>
+
+
+
+
+
+
+                @if (CurrentSession.Roles.Contains("Yonetim"))
+                {
+    <li class="nav-item">
+        <span class="nav-link  collapsed  d-flex justify-content-between align-items-center"
+              data-bs-toggle="collapse" data-bs-target="#submenu-definition">
+            <span>
+                <a href="#definition" target="_blank">
+                    <i class="simple-icon-settings" style="color:#ffcc00"></i>
+                </a>
+                <span class="sidebar-text" style="margin-left:20px">Tanımlama</span>
+            </span>
+            <span class="link-arrow">
+                <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+            </span>
+        </span>
+        <div style="margin-left:29px;" class="multi-level collapse "
+             role="list" id="submenu-definition" aria-expanded="false">
+            <ul class="flex-column nav">
+                <li class="nav-item">
+                    <a href="/AppUser/GetAllAppUsers">
+                        <i class="simple-icon-people" style="color:#b8b8b4"></i>
+                        <span class="d-inline-block" style="margin-left:5px;">Kullanıcılar</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div style="margin-left:29px;" class="multi-level collapse "
+             role="list" id="submenu-definition" aria-expanded="false">
+            <ul class="flex-column nav">
+                <li class="nav-item">
+                    <a href="/AppUser/Add">
+                        <i class="simple-icon-plus" style="color:#b8b8b4"></i>
+                        <span class="d-inline-block" style="margin-left:5px;">Kullanıcı Ekle</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        @*<div style="margin-left:29px;" class="multi-level collapse "
+                 role="list" id="submenu-definition" aria-expanded="false">
+                <ul class="flex-column nav">
+                    <li class="nav-item">
+                        <a href="/definition/salestargetslist">
+                            <i class="simple-icon-plus" style="color:#b8b8b4"></i>
+                            <span class="d-inline-block" style="margin-left:5px;">Satış Hedefi</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div style="margin-left:29px;" class="multi-level collapse "
+                 role="list" id="submenu-definition" aria-expanded="false">
+                <ul class="flex-column nav">
+                    <li class="nav-item">
+                        <a href="/definition/productprice">
+                            <i class="simple-icon-pin" style="color:#b8b8b4"></i>
+                            <span class="d-inline-block" style="margin-left:5px;">Ürün Fiyat Güncelle </span>
+                        </a>
+                    </li>
+                </ul>
+            </div> *@
+
+    </li>
+
+                    <li role="separator" class="dropdown-divider  border-gray-700"></li>
+}
+
+
+
+
+                <li class="nav-item">
+                    <a href="/salerapor/imei">
+                        <span class="nav-link  collapsed  d-flex justify-content-between align-items-center"
+                              data-bs-toggle="collapse" data-bs-target="#salerapor">
+                            <span>
+                                <svg style="color:#ffcc00" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upc-scan" viewBox="0 0 16 16">
+                                    <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5zM3 4.5a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-7zm3 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7z" />
+                                </svg>
+                                <span class="sidebar-text" style="margin-left:20px;">IMEI Sorgu</span>
+                            </span>
+                            <span>
+                                <span class="badge badge-sm bg-secondary ms-1 text-gray-800">Yeni</span>
+                            </span>
+
+                        </span>
+                    </a>
+                </li>
+
+                <li role="separator" class="dropdown-divider  border-gray-700"></li>
+
+                <li class="nav-item">
+
+                    <a href="/Kargo/Index">
+
+                        <span class="nav-link  collapsed  d-flex justify-content-between align-items-center"
+                              data-bs-toggle="collapse" data-bs-target="#Kargo">
+                            <span>
+                                <svg style="color:#ffcc00" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-truck" viewBox="0 0 16 16">
+                                    <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                                </svg>
+                                <span class="sidebar-text" style="margin-left:20px;">Kargo</span>
+                            </span>
+                            <span>
+                                <span class="badge badge-sm bg-secondary ms-1 text-gray-800">Yeni</span>
+                            </span>
+                        </span>
+                    </a>
+                </li>
+
+                <li role="separator" class="dropdown-divider  border-gray-700"></li>
+
+                <li class="nav-item" style="width:110px; margin-left:50px;">
+                    <a href="/Auth/Logout">
+                        <span class="nav-link d-flex justify-content-between align-items-center"
+                              data-bs-target="#/Auth/Logout">
+                            <span>
+                                <i class="icon icon-mdi" style="color:#ffcc00"></i>
+                                <span class="sidebar-text" style="margin-left:20px">Çıkış</span>
+                            </span>
+                            <span class="link-arrow">
+                                <svg style="color:#990303" class="icon icon-mdi" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                            </span>
+                        </span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+    </nav>
+
+
+
+
+    <main class="content">
+
+        <div class="container-fluid">
+            <div class="row">
+                @RenderBody()
             </div>
         </div>
-    </div>
-    <div class="modal fade" id="confirmmodal" role="dialog">
-        <div class="modal-dialog shadow">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title"></h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default alertmodelclose" data-dismiss="modal">Kapat</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <input id="elementid" value="@CurrentSession.Name" hidden />
+
+    </main>
+
+
+
+
+
+
     <script>
            var isyonetim = "@CurrentSession.Roles.Contains("Yonetim")";
     </script>
@@ -340,37 +971,105 @@
     <script src="/admin/dist/scripts.js"></script>
 
     <script src="~/js/site.js"></script>
+    <!-- Core -->
+    <script src="~/volt/html&css/vendor/popperjs/core/dist/umd/popper.min.js"></script>
+    <script src="~/volt/html&css/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
+    <!-- Vendor JS -->
+    <script src="~/volt/html&css/vendor/onscreen/dist/on-screen.umd.min.js"></script>
+
+    <!-- Slider -->
+    <script src="~/volt/html&css/vendor/nouislider/distribute/nouislider.min.js"></script>
+
+    <!-- Smooth scroll -->
+    <script src="~/volt/html&css/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+
+    <!-- Charts -->
+    <script src="~/volt/html&css/vendor/chartist/dist/chartist.min.js"></script>
+    <script src="~/volt/html&css/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+
+    <!-- Datepicker -->
+    <!-- Sweet Alerts 2 -->
+    <script src="~/volt/html&css/vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+    <!-- Moment JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+
+    <!-- Vanilla JS Datepicker -->
+    <!-- Notyf -->
+    <script src="~/volt/html&css/vendor/notyf/notyf.min.js"></script>
+
+    <!-- Simplebar -->
+    <script src="~/volt/html&css/vendor/simplebar/dist/simplebar.min.js"></script>
+
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <!-- Volt JS -->
+
+    <script src="~/volt/html&css/assets/js/volt.js"></script>
+    <script src="/admin/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="/admin/assets/libs/bootstrap-datepicker/dist/locales/bootstrap-datepicker.tr.min.js"></script>
+    <script src="~/tema/js/vendor/jquery-3.3.1.min.js"></script>
+    <script src="~/tema/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="~/tema/js/vendor/moment.min.js"></script>
+    <script src="~/tema/js/vendor/fullcalendar.min.js"></script>
+    <script src="~/tema/js/vendor/perfect-scrollbar.min.js"></script>
+    <script src="~/tema/js/vendor/bootstrap-notify.min.js"></script>
+    <script src="~/tema/js/vendor/select2.full.js"></script>
+    <script src="~/tema/js/vendor/bootstrap-datepicker.js"></script>
+    <script src="~/tema/js/vendor/Sortable.js"></script>
+    <script src="~/tema/js/vendor/bootstrap-tagsinput.min.js"></script>
+    <script src="~/tema/js/vendor/nouislider.min.js"></script>
+    <script src="~/tema/js/vendor/jquery.barrating.min.js"></script>
+    <script src="~/tema/js/vendor/cropper.min.js"></script>
+    <script src="~/tema/js/vendor/typeahead.bundle.js"></script>
+    <script src="~/tema/js/vendor/mousetrap.min.js"></script>
+    <script src="~/tema/js/dore-plugins/select.from.library.js"></script>
+    <script src="~/tema/js/vendor/dropzone.min.js"></script>
+    <script src="~/tema/js/dore.script.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+
+    <script src="/admin/assets/libs/moment/min/moment-with-locales.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-html5-1.6.1/b-print-1.6.1/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script src="~/Toast/js/toast.js"></script>
+
+
+
+
+
+
+    @*   <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+
+    *@
+
+
+
+
+
+    <script src="~/Toast/js/toast.js"></script>
     @RenderSection("Scripts", required: false)
-    <div class="modal fade picturecropper" id="picturemodal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" style="max-width:99%; height:70vh; top:0" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="pull-right">
-                        <button type="button" class="btn btn-primary" id="crop">Kes ve Kaydet</button>&nbsp;
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
-                    </div>
-                    <h5 class="modal-title" id="modalLabel">Resmi Kes</h5>
 
-                </div>
-                <div class="modal-body">
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
-                    </div>
-                    <div class="img-container">
-                        <img id="image" alt="" src="/client/img/advance_feature_img.jpg" />
-                    </div>
-                </div>
 
-            </div>
-        </div>
-    </div>
-    <div class="alert picturealert" role="alert"></div>
-    <div class="preloader">
-        <div class="lds-ripple">
-            <div class="lds-pos"></div>
-            <div class="lds-pos"></div>
-        </div>
-    </div>
+    @*<script>
+            $('a').attr('target', '_blank');
+        </script>*@
+
+
+
+
 </body>
+
+
 </html>

@@ -28,6 +28,19 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\excel\" />
+    <Folder Include="wwwroot\volt\html&amp;css\vendor\chartist\dist\scss\settings\" />
+    <Folder Include="wwwroot\volt\html&amp;css\vendor\sass\types\legacy\" />
+    <Folder Include="wwwroot\volt\html&amp;css\vendor\sass\types\logger\" />
+    <Folder Include="wwwroot\volt\html&amp;css\vendor\sass\types\util\" />
+    <Folder Include="wwwroot\volt\html&amp;css\vendor\sass\types\value\" />
+    <Folder Include="wwwroot\volt\html&amp;css\vendor\waypoints\src\" />
+    <Folder Include="wwwroot\volt\html&amp;css\vendor\waypoints\test\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\volt\html&amp;css\vendor\sass\node_modules\immutable\dist\immutable.es.js" />
+    <None Include="wwwroot\volt\html&amp;css\vendor\sass\node_modules\immutable\dist\immutable.js.flow" />
+    <None Include="wwwroot\volt\html&amp;css\vendor\sass\node_modules\immutable\dist\immutable.min.js" />
   </ItemGroup>
 
 </Project>
