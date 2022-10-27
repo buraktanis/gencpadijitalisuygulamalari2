@@ -1,11 +1,6 @@
 ﻿@model AlislarModel
 
-@{
-    ViewData["Title"] = "alislar";
-
-
-
-}
+@{ ViewData["Title"] = "alislar"; }
 
 @section Scripts{
     <script type="text/javascript">
@@ -57,10 +52,21 @@
         </div>
     </script>
 }
+<div class="col-md-12">
 
-<div class="bg-white  ">
-    <h2 class="pt-3 pb-4 pl-4"><strong>Alış </strong></h2>
+    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb" style="padding-top:30px;">
+        <ol class="breadcrumb ">
+
+            <li class="breadcrumb-item active" aria-current="page ">
+                <h3>
+                    Alışlar
+                </h3>
+            </li>
+        </ol>
+    </nav>
+
 </div>
+
 
 
 <div class="col-md-12 ">
@@ -80,7 +86,7 @@
                     </select>
                 </div>
                 <div class="form-group col-md-4 p-4">
-                    <button class="btn btn-warning mr-1 btn-raised" id="btnara" style="margin-top:20px"><i class="fa fa-search"></i> Uygula</button>
+                    <button style="background-color:#f0bc74;margin-top: 23px;" class="btn " id="btnara">Ara </button>
                 </div>
 
             </div>
@@ -91,93 +97,88 @@
 <div class="col-md-12 col-lg-12">
     @foreach (var item in Model.markalar)
     {
-        <div class="sortable-survey">
-            <div draggable="false" class="" style="">
-                <div class="card question d-flex mb-4 edit-quesiton">
-                    <div class="d-flex flex-grow-1 min-width-zero">
+<div class="sortable-survey">
+    <div draggable="false" class="" style="">
+        <div class="card question d-flex mb-4 edit-quesiton">
+            <div class="d-flex flex-grow-1 min-width-zero">
 
-                        <div class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
-                            <div class="list-item-heading mb-0 truncate w-80 mb-1 mt-1">
-                                <span class="heading-number d-inline-block">
-                                    <i class="iconsminds-align-center"></i>
-                                </span>
-                                @item
-                            </div>
-                        </div>
-                        <div class="custom-control custom-checkbox pl-1 align-self-center pr-4">
-
-                            <button class="btn btn-outline-theme-3 icon-button rotate-icon-click collapsed" type="button" data-toggle="collapse" data-target="#@item" aria-expanded="false" aria-controls="@item">
-                                <i class="fa fa-bars" aria-hidden="true"></i>
-
-                            </button>
-                        </div>
-                    </div>
-                    <div class="question-collapse collapse" id="@item" style="">
-                        <div class="card-body pt-0">
-                            <div class="card-body">
-
-                                <div class="table-responsive">
-
-                                    <table class="table table-sm  table-bordered dataTable no-footer">
-                                        <thead>
-                                            <tr>
-                                                <th>Model  </th>
-                                                <th>UNVAN  </th>
-                                                <th>Tarih </th>
-                                                <th>Kisi  </th>
-                                                <th>Tur </th>
-                                                <th>Adet  </th>
-                                                <th>Fiyat  </th>
-
-
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            @foreach (var i in Model.alislar.Where(x => x.marka == item))
-                                            {
-                                                <tr>
-                                                    <td>
-                                                        <p>@i.model </p>
-                                                    </td>
-                                                    <td>
-                                                        <p>@i.unvan </p>
-                                                    </td>
-                                                    <td>
-                                                        <p>@i.tarih </p>
-                                                    </td>
-                                                    <td>
-                                                        <p>@i.kisi</p>
-                                                    </td>
-                                                    <td>
-                                                        <p>@i.tur </p>
-                                                    </td>
-                                                    <td>
-                                                        <p>@i.adet </p>
-                                                    </td>
-                                                    <td>
-                                                        <p>@i.fiyat </p>
-                                                    </td>
-
-                                                </tr>
-
-                                            }
-
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-
-
-                        </div>
+                <div class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
+                    <div class="list-item-heading mb-0 truncate w-80 mb-1 mt-1">
+                        <span class="heading-number d-inline-block">
+                            <i class="iconsminds-align-center"></i>
+                        </span>
+                        @item
                     </div>
                 </div>
-            </div>
+                <div class="custom-control custom-checkbox pl-1 align-self-center pr-4">
 
+                    <button class="btn btn-outline-theme-3 icon-button rotate-icon-click collapsed" type="button" data-toggle="collapse" data-target="#@item" aria-expanded="false" aria-controls="@item">
+                        <i class="simple-icon-arrow-down with-rotate-icon"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="question-collapse collapse" id="@item" style="">
+                <div class="card-body pt-0">
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+
+                            <table class="table-bordered display" style="width:100%; font-size:12px;">
+                                <thead style="background-color:#1f2937; height:42px;">
+                                    <tr style="color:#F1F1F1;">
+                                        <th>Model  </th>
+                                        <th>Ünvan  </th>
+                                        <th>Tarih </th>
+                                        <th>Kişi  </th>
+                                        <th>Tür </th>
+                                        <th>Adet  </th>
+                                        <th>Fiyat  </th>
+
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var i in Model.alislar.Where(x => x.marka == item))
+                                    {
+                    <tr>
+                        <td>
+                            <p>@i.model </p>
+                        </td>
+                        <td>
+                            <p>@i.unvan </p>
+                        </td>
+                        <td>
+                            <p>@i.tarih </p>
+                        </td>
+                        <td>
+                            <p>@i.kisi</p>
+                        </td>
+                        <td>
+                            <p>@i.tur </p>
+                        </td>
+                        <td>
+                            <p>@i.adet </p>
+                        </td>
+                        <td>
+                            <p>@i.fiyat </p>
+                        </td>
+
+                    </tr>}
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
         </div>
-    }
+    </div>
+
+</div>}
 
 </div>
-

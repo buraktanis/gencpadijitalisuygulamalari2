@@ -2,11 +2,7 @@
 
 
 
-@{
-    ViewData["Title"] = "Stok Maliyet";
-
-
-}
+@{ ViewData["Title"] = "Stok Maliyet"; }
 
 
 @section Scripts{
@@ -36,7 +32,7 @@
                             search: 'none'
                         }
                     },
-                    //the remaining buttons here 
+                    //the remaining buttons here
                 }],
 
             });
@@ -61,10 +57,21 @@
 
 
 
+<div class="col-md-12">
 
-<div class="bg-white  ">
-    <h2 class="pt-3 pb-4 pl-4"><strong>Tahsilat Raporu  </strong></h2>
+    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb" style="padding-top:30px;">
+        <ol class="breadcrumb ">
+
+            <li class="breadcrumb-item active" aria-current="page ">
+                <h3>
+                    Tahsilat Raporu
+                </h3>
+            </li>
+        </ol>
+    </nav>
+
 </div>
+
 <div class="container-fluid">
     <div class="row">
 
@@ -97,50 +104,45 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr>
+                    <tr>
 
-                                        <td>
-                                            <a class="btn btn-light btnsearch" data-text="@item.temsilci">@item.temsilci</a>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-light btnsearch" data-text="@item.kod">@item.kod</a>
+                        <td>
+                            <a class="btn btn-light btnsearch" data-text="@item.temsilci">@item.temsilci</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-light btnsearch" data-text="@item.kod">@item.kod</a>
 
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-light btnsearch" data-text=" @item.unvan"> @item.unvan</a>
-                                        </td>
-                                        <td>
+                        </td>
+                        <td>
+                            <a class="btn btn-light btnsearch" data-text=" @item.unvan"> @item.unvan</a>
+                        </td>
+                        <td>
 
-                                            @item.GECEN_GUN
-                                        </td>
+                            @item.GECEN_GUN
+                        </td>
 
-                                        <td>
-                                            @string.Format("{0:C0}", item.TUTAR)
+                        <td>
+                            @string.Format("{0:C0}", item.TUTAR)
 
-                                        </td>
+                        </td>
 
-                                        @if (item.MODÜL == "VADE GEÇMİŞ!")
-                                        {
-                                            <td style="background-color: #d72f2f" class="text-center text-white">
+                        @if (item.MODÜL == "VADE GEÇMİŞ!")
+                        {
+        <td style="background-color: #d72f2f" class="text-center text-white">
 
-                                                @item.MODÜL
-                                            </td>
+            @item.MODÜL
+        </td> }
+                        else
+                        {
+        <td>
 
-                                        }
-                                        else
-                                        {
-                                            <td>
-
-                                                @item.MODÜL
-                                            </td>
-                                        }
+            @item.MODÜL
+        </td>}
 
 
 
 
-                                    </tr>
-
-                                }
+                    </tr>}
                             </tbody>
 
                         </table>

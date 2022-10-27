@@ -6,12 +6,24 @@
 
 <div class="row ">
 
+    <div class="col-md-12">
+
+        <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb" style="padding-top:30px;">
+            <ol class="breadcrumb ">
+
+                <li class="breadcrumb-item active" aria-current="page ">
+                    <h3>
+                        Müşteri Tanımlama
+                    </h3>
+                </li>
+            </ol>
+        </nav>
+
+    </div>
 
 
     <div class="row">
-        <div class="bg-white col-md-12  ">
-            <h3 class="pt-3 pb-3 pl-3"><strong>Müşteri Tanımlama</strong> <i class="fas  fa-arrow-left  border p-2  rounded-circle border-primary text-primary float-right" style="margin-right:2%; "></i></h3>
-        </div>
+
         <div class="col-md-3 " style="padding-left:1%;padding-right:1%;margin-top:10px">
 
             <div class="col-md-12 col-sm-6 pe-2 ps-2">
@@ -169,15 +181,15 @@
                                     </div>
 
                                     @*<div class="form-group row" >
-            <div class="col-sm-3">
-                <label id="taxandtcNumberlabel" asp-for="Customer.TaxandtcNumber" data-leng="10" class="text-end control-label col-form-label">Vergi No*</label>
-            </div>
-            <div class="col-sm-9">
-                <input asp-for="Customer.TaxandtcNumber" class="form-control">
-                <span asp-validation-for="Customer.TaxandtcNumber" class="text-danger"></span>
-            </div>
+                                            <div class="col-sm-3">
+                                                <label id="taxandtcNumberlabel" asp-for="Customer.TaxandtcNumber" data-leng="10" class="text-end control-label col-form-label">Vergi No*</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input asp-for="Customer.TaxandtcNumber" class="form-control">
+                                                <span asp-validation-for="Customer.TaxandtcNumber" class="text-danger"></span>
+                                            </div>
 
-        </div>*@
+                                        </div>*@
                                     <div class="form-group row" id="taxAdministration">
                                         <div class="col-sm-3">
                                             <label id="taxandtcNumberlabel" asp-for="Customer.TaxAdministration" data-leng="10" class="text-end control-label col-form-label">Vergi No*</label>
@@ -279,8 +291,8 @@
                                             <span asp-validation-for="Customer.Phone" class="text-danger"></span>
                                         </div>
                                         <div class="col-sm-1">
-                                            <a href="#"  class="telControl btn btn-info">Kontrol Et</a>
-                                            
+                                            <a href="#" class="telControl btn btn-info">Kontrol Et</a>
+
                                         </div>
 
                                     </div>
@@ -317,8 +329,7 @@
                                             <select asp-for="Customer.City" class="form-control citySelection1">
                                                 @foreach (var item in Model.Cities)
                                                 {
-                                                    <option value="@item.Value">@item.Text</option>
-                                                }
+                                    <option value="@item.Value">@item.Text</option>}
                                             </select>
 
                                             @* @Html.DropDownListFor(m => m.Customer.City, (List<SelectListItem>)Model.Cities, new { @class = "form-control" })*@

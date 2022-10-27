@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*
 
 =========================================================
@@ -5465,7 +5465,7 @@ textarea.form-control-lg {
 
 .btn-gray-800 {
     color: #ffffff;
-    background-color: #1F2937;
+    background-color: #04427a;
     border-color: #1F2937;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(17, 24, 39, 0.075);
 }
@@ -10132,7 +10132,9 @@ textarea.form-control-lg {
 
 .d-grid {
     display: grid !important;
+    
 }
+
 
 .d-table {
     display: table !important;
@@ -28002,7 +28004,7 @@ h1, h2, h3, h4, h5, h6,
 
 p, ol li, ul li, .p {
     font-family: var(--bs-font-sans-serif);
-    font-size: 1rem;
+    
     font-weight: 400;
     line-height: 1.6;
 }

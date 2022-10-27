@@ -5,19 +5,31 @@
     ViewData["Title"] = "GetAllCustomers";
 }
 <div class="">
+    <div class="col-md-12">
+
+        <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb" style="padding-top:30px;">
+            <ol class="breadcrumb ">
+
+                <li class="breadcrumb-item active" aria-current="page ">
+                    <h3>
+                        Müşteri Listem
+                    </h3>
+                </li>
+            </ol>
+        </nav>
+
+    </div>
     <div class="">
-        <div class="bg-white  ">
-            <h2 class="pt-3 pb-4 pl-4"><strong>Müşteri Listesi</strong><i class="fas fa-arrow-left  border p-2  rounded-circle border-primary text-primary float-right" style="margin-right:2%;"></i></h2>
-        </div>
+
         <div class="bg-white  mt-4" style="margin-left:2%;margin-right:2%;">
             <div class="row bg-white rounded">
 
-                <div class="col-sm-12">
-                    <div class="col-md-6"></div>
-                    <div class="col-md-6 float-right pt-4 p-2 ">
-                        <a href="/Customer/AddCustomer"><i class="fa  fa-plus border p-2 mr-1 rounded-circle border-primary  btn-outline-primary float-right"></i></a>
+                <div class="col-sm-12" style="text-align:right">
+                    
+                    <div class="col-md-12 float-right pt-4 p-2 ">
+                        <a class="btn btn-outline-info" href="/Customer/AddCustomer"><i class=""></i>Arama</a>
 
-                        <a href="#!" onclick="gizleGoster('sonuc') "><i class="fas fa-filter border  p-2 mr-1 rounded-circle border-warning btn-outline-warning float-right"></i></a>
+                        <a class="btn btn-outline-success" href="#!" onclick="gizleGoster('sonuc') "><i class=""></i>Ekle</a>
                     </div>
 
 
@@ -33,12 +45,10 @@
                                 <select class="form-control" id="selecttemsici">
                                     @if (CurrentSession.Roles.Contains("Yonetim"))
                                     {
-                                        <option value=" ">Temsilci Seçiniz</option>
-                                    }
+                        <option value=" ">Temsilci Seçiniz</option> }
                                     else
                                     {
-                                        <option value="@CurrentSession.Name">@CurrentSession.Name</option>
-                                    }
+                        <option value="@CurrentSession.Name">@CurrentSession.Name</option>}
 
                                 </select>
                             </div>
@@ -53,8 +63,7 @@
                                         <option value="">Sınıf Seç</option>
                                         @foreach (var item in Model.CustomerClasses)
                                         {
-                                            <option value="@item.Value">@item.Text</option>
-                                        }
+                            <option value="@item.Value">@item.Text</option>}
                                     </select>
 
                                 </div>
@@ -71,8 +80,7 @@
                                         <option value="">Bölge Seç</option>
                                         @foreach (var item in Model.Regions)
                                         {
-                                            <option value="@item.Value">@item.Text</option>
-                                        }
+                            <option value="@item.Value">@item.Text</option>}
                                     </select>
                                 </div>
 
@@ -89,8 +97,7 @@
                                         <option value="">İl Seç</option>
                                         @foreach (var item in Model.Cities)
                                         {
-                                            <option value="@item.Value">@item.Text</option>
-                                        }
+                            <option value="@item.Value">@item.Text</option>}
                                     </select>
 
                                 </div>
@@ -110,7 +117,7 @@
 
 
                         <div class="col-lg-12 row">
-                            <div class="col-md-3">   </div>
+                            
                             <div class="col-md-4">
                                 <div class="form-group row">
                                     <div class="col-sm-12">
@@ -144,9 +151,9 @@
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <table id="recordtable" class="table table-bordered pt-0 pb-0">
-                        <thead class="thead-light ">
-                            <tr>
+                    <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
+                        <thead class="thead-light" style="background-color:#1f2937; height:42px;">
+                            <tr style="color:#F1F1F1;">
 
                                 <th class="pt-1 pb-1">
                                     S.Sipariş Tarihi
@@ -309,12 +316,12 @@
                         "data": "ConfirmationType", className: "text-center", "render": function (data, type, row) {
                             var html = "";
                             if (data == 0) {
-                                html = `<span class="badge badge-pill badge-danger">Onay Bekleniyor</span>`;
+                                html = `<span class="badge badge badge-danger">Onay Bekleniyor</span>`;
 
                             }
 
                             if (data == 1) {
-                                html = ` <span class="badge badge-pill badge-success">Onayladı</span>`;
+                                html = ` <span class="success">Onayladı</span>`;
                             }
 
 
@@ -333,9 +340,9 @@
 
 
                             html = html + `<div class="btn-group">
-                                  <button type="button" class="btn btn-secondary">Daha</button>
+                                  
                                   <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
-                                    <span class="sr-only">Toggle Dropdown</span>
+                                    <span class="sr-only">Daha</span>
                                   </button>
                                   <div class="dropdown-menu">
                                     <a class="dropdown-item orders" data-id='${data}' href="#">Siparişler</a>

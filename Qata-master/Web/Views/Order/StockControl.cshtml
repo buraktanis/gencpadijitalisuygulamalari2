@@ -5,14 +5,25 @@
 <div class="">
     <div class="">
         <!--Sipariş Listem Sayfası ve Sipariş Onay Sayfası-->
-        <div class="bg-white  ">
-            <h2 class="pt-3 pb-4 pl-4"><strong>Stok Durumu </strong><i class="fas fa-arrow-left  border p-2  rounded-circle border-primary text-primary float-right" style="margin-right:2%;"></i></h2>
+        <div class="col-md-12">
+
+            <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb" style="padding-top:30px;">
+                <ol class="breadcrumb ">
+
+                    <li class="breadcrumb-item active" aria-current="page ">
+                        <h3>
+                            Stok durumu
+                        </h3>
+                    </li>
+                </ol>
+            </nav>
+
         </div>
         <div class="bg-white  mt-4" style="margin-left:2%;margin-right:2%;">
             <div class="row bg-white rounded">
 
 
-                <hr class="container-fluid bg-light pl-5" @*style="width:95%;"*@ />
+                <hr class="container-fluid bg-light pl-5" @style="width:95%;" @ />
                 <div class="col-sm-12" id="sonuc" style="display:none;">
 
                 </div>
@@ -26,38 +37,35 @@
                                 <th class="pt-1 pb-1"> MalzemeGrupKodu</th>
                                 @if (CurrentSession.Roles.Contains("Yonetim"))
                                 {
-                                    <th class="pt-1 pb-1"> Stok </th>
+                    <th class="pt-1 pb-1"> Stok </th>
                                     <th class="pt-1 pb-1"> Bekleyen Sipariş(Logo) </th>
-                                    <th class="pt-1 pb-1"> Bekleyen Sipariş(Crm) </th>
-                                }
-                                    <th class="pt-1 pb-1"> Filli Stok </th>
+                                                    <th class="pt-1 pb-1"> Bekleyen Sipariş(Crm) </th>}
+                                <th class="pt-1 pb-1"> Filli Stok </th>
 
-                                </tr>
+                            </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>@item.Kod</td>
-                                <td>@item.AD</td>
-                                <td>@item.MarkaKodu</td>
-                                <td>@item.MalzemeGrupKodu</td>
-                                @if (CurrentSession.Roles.Contains("Yonetim"))
-                                {
-                                    <td>@item.STOK</td>
-                                    <td>@item.ONAYLI_SIP</td>
-                                    <td>@item.Bekleyen_STOK</td>
-                                }
-                                    <td class="text-danger "><h4>@(item.STOK - item.Bekleyen_STOK- item.ONAYLI_SIP)</h4></td>
-                                </tr>
-                            }
+                <tr>
+                    <td>@item.Kod</td>
+                    <td>@item.AD</td>
+                    <td>@item.MarkaKodu</td>
+                    <td>@item.MalzemeGrupKodu</td>
+                    @if (CurrentSession.Roles.Contains("Yonetim"))
+                    {
+    <td>@item.STOK</td>
+                        <td>@item.ONAYLI_SIP</td>
+                                            <td>@item.Bekleyen_STOK</td>}
+                    <td class="text-danger "><h4>@(item.STOK - item.Bekleyen_STOK- item.ONAYLI_SIP)</h4></td>
+                </tr>}
 
 
                         </tbody>
                     </table>
 
                 </div>
-              
+
             </div>
         </div>
     </div>
@@ -87,7 +95,7 @@
                             search: 'none'
                         }
                     },
-                    //the remaining buttons here 
+                    //the remaining buttons here
                 }],
             });
 

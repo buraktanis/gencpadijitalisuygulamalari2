@@ -119,7 +119,7 @@
     <div class="col-md-12 ">
         <div class="card mb-3">
             <div class="card-body">
-                <div class="form-row" id="tips">
+                <div class="row" id="tips">
                     <div class="form-group col-md-4  p-3">
                         <label>Aylar </label>
                         <select class="form-control" id="ayselect">
@@ -148,28 +148,28 @@
 
                         </select>
                     </div>
-                    <div class="form-group col-md-2 p-4">
-                        <button style="background-color:#f0bc74;" class="btn " id="btnara">Ara </button>
+                    <div class="form-group col-md-2 p-4" style="margin-top:30px;">
+                        <button style="background-color:#f0bc74; " class="btn " id="btnara">Ara </button>
                     </div>
                     <div class="form-group col-md-2 p-4">
                         <label for="isbadge">
 
-                            <input id="isbadge" type="checkbox">
-                            Yüzdelik Görüm
+                            <input id="isbadge" type="radio">
+                            Yüzdelik Görünüm
                         </label>
                         <label for="isortalamtr">
 
-                            <input id="isortalamtr" type="checkbox">
+                            <input id="isortalamtr" type="radio">
                             Ortalama
                         </label>
                     </div>
 
 
-                    <div id="moons" class="form-row">
+                    <div id="moons" class="row">
                         @foreach (var item in tips)
                         {
             <div class="tip col-md-6 form-group" data-tip="@item.tip">
-                <input id="che-@item.tip" type="checkbox" name="che-@item.tip">
+                <input id="che-@item.tip" type="radio" name="che-@item.tip">
                 <label for="che-@item.tip"> @item.tip</label>
 
             </div>}

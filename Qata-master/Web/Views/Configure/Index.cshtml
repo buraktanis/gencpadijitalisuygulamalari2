@@ -3,22 +3,28 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="">
-    <div class="">
-        <div class="bg-white  ">
-            <h2 class="pt-3 pb-4 pl-4"><strong>@Model.Name</strong><i class="fas fa-arrow-left  border p-2  rounded-circle border-primary text-primary float-right" style="margin-right:2%;"></i></h2>
-        </div>
-      
-    </div>
+<div class="col-md-12">
+
+    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb" style="padding-top:30px;">
+        <ol class="breadcrumb ">
+
+            <li class="breadcrumb-item active" aria-current="page ">
+                <h3>
+                    @Model.Name
+                </h3>
+            </li>
+        </ol>
+    </nav>
+
 </div>
 
 
-    <div class="bg-white  mt-4" style="margin-left:2%;margin-right:2%;">
+    <div class="bg-white  mt-4" style="">
         <div class="row bg-white rounded">
             <div class="col-sm-12">
-                <div class="col-md-6"></div>
-                <div class="col-md-6 float-right pt-4 p-2 ">
-                    <a href="/Configure/NewConfiguration/@Model.Id"> <i class="fa  fa-plus border p-2 mr-1 rounded-circle border-primary  btn-outline-primary float-right"></i></a>
+                
+                <div class="ml-auto mb-3 mt-3 text-right" style="text-align:right">
+                    <a href="/Configure/NewConfiguration/@Model.Id" class="btn btn-success btn-sm text-white"> <i class="simple-icon-plus"></i>Yeni</a>
                     @*<i class="fas fa-filter border  p-2 mr-1 rounded-circle border-warning btn-outline-warning float-right"></i>
                     <i class="fa  fa-ellipsis-h border p-2 mr-1 rounded-circle btn-outline-secondary float-right"></i>*@
                 </div>
@@ -27,17 +33,17 @@
             </div>
             <hr class="container-fluid bg-light pl-5">
         
-            <div class="col-sm-12">
-                <table id="recordtable" class="table table-bordered pt-0 pb-0">
-                    <thead class="thead-light">
-                        <tr>
+            <div class="col-sm-12 table-responsive">
+                <table id="recordtable" class="table-bordered display" style="width:100%; font-size:16px;">
+                    <thead class="thead-light" style="background-color:#1f2937; height:42px;">
+                        <tr style="color:#F1F1F1;">
                             <th class="pt-1 pb-1">Name</th>
                             <th class="pt-1 pb-1">Açıklama</th>
                             <th class="pt-1 pb-1"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr style="border-color: #d1d5db; border-style: solid; border-width: 1px;">
                             <td class="col-sm-1">Name</td>
                             <td class="col-sm-1"><i class="fa fa-ellipsis-v border border-info p-2 btn-outline-info " style="border-radius:30%;"></i></td>
                         </tr>
@@ -46,9 +52,7 @@
                 </table>
 
             </div>
-            <div class="col-sm-12 text-center">
-                <p>Toplam <strong>2</strong>  adet kayıt var.</p>
-            </div>
+            
         </div>
     </div>
 
@@ -74,6 +78,9 @@
                 ///  $('#recordtable1_paginate').hide();
 
                 recordtable = $('#recordtable').DataTable({
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                    },
                     "responsive": true,
                     "serverSide": true,
                     "searching": true,

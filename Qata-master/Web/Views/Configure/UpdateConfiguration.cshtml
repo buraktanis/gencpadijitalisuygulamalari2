@@ -4,10 +4,18 @@
     ViewData["Title"] = "NewConfiguration";
 }
 
-<div class="">
-    <div class="bg-white  ">
-        <h2 class="pt-3 pb-4 pl-4"><strong>@ViewBag.Name</strong><i class="fas fa-arrow-left  border p-2  rounded-circle border-primary text-primary float-right" style="margin-right:2%;"></i></h2>
-    </div>
+<div class="col-md-12">
+
+    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb" style="padding-top:30px;">
+        <ol class="breadcrumb ">
+
+            <li class="breadcrumb-item active" aria-current="page ">
+                <h3>
+                    @ViewBag.Name
+                </h3>
+            </li>
+        </ol>
+    </nav>
 
 </div>
 <div class="bg-white  mt-4 " style="margin-left:2%;margin-right:2%;">
@@ -16,12 +24,12 @@
         <div class="col-sm-6">
             <form asp-action="UpdateConfiguration">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
+                <div class="form-group mb-3 mt-3">
                     <label asp-for="Name" class="control-label"></label>
                     <input asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-3 mt-3">
                     <label asp-for="Info" class="control-label">Açıklama</label>
                     <input asp-for="Info" class="form-control" />
                     <span asp-validation-for="Info" class="text-danger"></span>
@@ -30,12 +38,12 @@
                 <input asp-for="Id" class="form-control" hidden />
 
 
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                <div class="form-group mb-3 mt-3">
+                    <input type="submit" value="Güncelle" class="btn btn-primary" />
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-3 mt-3">
                     <div>
-                        <a href="/Configure/Index/@Model.Type">Back to List</a>
+                        <a href="/Configure/Index/@Model.Type">Geri Dön</a>
                     </div>
                 </div>
             </form>

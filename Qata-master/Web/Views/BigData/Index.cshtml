@@ -1,29 +1,44 @@
 ﻿@model List<Configuration>
 
 <div class="">
+    <div class="col-md-12">
+
+        <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb" style="padding-top:30px;">
+            <ol class="breadcrumb ">
+
+                <li class="breadcrumb-item active" aria-current="page ">
+                    <h3>
+                        Potansiyel Bayi Listem
+                    </h3>
+                </li>
+            </ol>
+        </nav>
+
+    </div>
     <div class="">
-        <div class="bg-white  ">
-            <h2 class="pt-3 pb-4 pl-4"><strong>BigData</strong><i class="fas fa-arrow-left  border p-2  rounded-circle border-primary text-primary float-right" style="margin-right:2%;"></i></h2>
-        </div>
+
         <div class="bg-white  mt-4" style="margin-left:2%;margin-right:2%;">
             <div class="row bg-white rounded">
+                <div class="row">
 
+                
                 <div class="col-sm-12">
                     <div class="col-md-6 pt-4 p-2">
                         @if (CurrentSession.Roles.Contains("Yonetim"))
                         {
-                            <input id="file-upload" type="file"  />
-                            <a href="#postadd" class="fas fa-upload border    border-warning btn-outline-warning btn btn-md" id="start_upload"> Yükle</a>
-                        }
+            <input class="form-control" id="file-upload" type="file" />
+                            <a href="#postadd" class="btn btn-outline-warning" id="start_upload"> Yükle</a>}
+
 
                     </div>
-                    <div class="col-md-6 float-right pt-4 p-2 ">
-                        <a href="#!" onclick="gizleGoster('sonuc') "><i class="fas fa-filter border  p-2 mr-1 rounded-circle border-warning btn-outline-warning float-right"></i></a>
-                        <a href="/BigData/Add"><i class="fa  fa-plus border p-2 mr-1 rounded-circle border-primary  btn-outline-primary float-right"></i></a>
+                    <div class="col-md-12  pt-4 p-2 " style="text-align:right">
+                        <a class="btn btn-outline-info" href="#!" onclick="gizleGoster('sonuc') "><i class=""></i>Arama</a>
+                        <a class="btn btn-outline-success" href="/BigData/Add"><i class=""></i>Ekle</a>
                     </div>
 
 
                 </div>
+                    </div>
 
                 <hr class="container-fluid bg-light pl-5" @*style="width:95%;"*@ />
                 <div class="col-sm-12">
@@ -35,12 +50,10 @@
                                 <select class="form-control" id="selecttemsici">
                                     @if (CurrentSession.Roles.Contains("Yonetim"))
                                     {
-                                        <option value=" ">Temsilçi Seçiniz</option>
-                                    }
+                        <option value=" ">Temsilçi Seçiniz</option> }
                                     else
                                     {
-                                        <option value="@CurrentSession.Name">@CurrentSession.Name</option>
-                                    }
+                        <option value="@CurrentSession.Name">@CurrentSession.Name</option>}
 
                                 </select>
                             </div>
@@ -68,9 +81,9 @@
                     </div>
                 </div>
                 <div class="col-sm-12 mt-4">
-                    <table id="recordtable" class="table table-bordered pt-0 pb-0">
-                        <thead class="thead-light ">
-                            <tr>
+                    <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
+                        <thead class="thead-light" style="background-color:#1f2937; height:42px;">
+                            <tr style="color:#F1F1F1;">
                                 <th class="pt-1 pb-1">Adi</th>
                                 <th class="pt-1 pb-1">
                                     S.Arama Tarihi

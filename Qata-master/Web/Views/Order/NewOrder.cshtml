@@ -1,28 +1,41 @@
 ﻿@model OrderViewModel
 
-@{
-    ViewData["Title"] = "NewOrder";
+@{ ViewData["Title"] = "NewOrder"; }
+<style>
+    .center {
+        margin: auto;
+        width: 60%;
+        padding: 10px;
+    }
+</style>
 
-}
+<div class="col-md-12">
 
+    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb" style="padding-top:30px;">
+        <ol class="breadcrumb ">
 
-<div class="bg-white col-md-12 ">
-    <h2 class="pt-3 pb-4 pl-4"><strong>Sipariş Ekranı</strong><a asp-action="Index" class="fas fa-arrow-left  border p-2  rounded-circle border-primary text-primary float-right" style="margin-right:2%;"></a></h2>
+            <li class="breadcrumb-item active" aria-current="page ">
+                <h3>
+                    Sipariş oluştur
+                </h3>
+            </li>
+        </ol>
+    </nav>
+
 </div>
 
 
-<div class="bg-white  mt-4" style="margin-left:2%;margin-right:2%;">
+<div class="bg-white  mt-4">
     <form class="form-horizontal" asp-action="NewOrder">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <!--Müşteri Bilgileri-->
-        <div class="row bg-white rounded ">
+        <div class="center">
 
-            <h4 class="card-title pl-5 pt-5 col-sm-12"><strong>Sipariş</strong> <small>Bilgileri</small></h4>
 
-            <hr class="container-fluid bg-light" />
 
-            <div class="col-md-6 ">
+
+            <div class="col-md-18">
                 <!---->
                 <div class="card pl-3 pr-3 ">
                     <div class="form-horizontal">
@@ -35,7 +48,7 @@
 
 
                                 <div class="col-md-2">
-                                    <a href="#!" class="btn btn-info" id="cDiv">Müşteri Seç</a>
+                                    <a href="#!" class="btn btn-secondary" id="cDiv">Müşteri Seç</a>
                                 </div>
                                 <div class="col-md-2">
                                     <a href="#!" class="btn btn-secondary" id="bakiye">Bakiye</a>
@@ -92,7 +105,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 ">
+            <div class="col-md-18">
                 <!---->
                 <div class="card pl-3 pr-3 ">
                     <div class="form-horizontal">
@@ -105,12 +118,10 @@
                                 <div class="col-sm-9">
                                     @if (CurrentSession.Roles.Contains("Yonetim"))
                                     {
-                                        @Html.DropDownListFor(m => m.Order.Slsman, (List<SelectListItem>)Model.Slsmans, new { @class = "form-control" })
-                                    }
+                        @Html.DropDownListFor(m => m.Order.Slsman, (List<SelectListItem>)Model.Slsmans, new { @class = "form-control" }) }
                                     else
                                     {
-                                        @Html.DropDownListFor(m => m.Order.Slsman, new List<SelectListItem> { new SelectListItem { Text = CurrentSession.Name, Value = CurrentSession.Name } }, new { @class = "form-control" })
-                                    }
+                        @Html.DropDownListFor(m => m.Order.Slsman, new List<SelectListItem> { new SelectListItem { Text = CurrentSession.Name, Value = CurrentSession.Name } }, new { @class = "form-control" })}
 
                                 </div>
                                 <span class="text-danger"></span>
@@ -142,10 +153,10 @@
                 </div>
             </div>
 
-            <div class=" col-lg-12  pb-3">
-                <div class="float-sm-right">
+            <div class=" col-lg-12  pb-3 center">
+                <div class="center">
 
-                    <input type="submit" value="Ürün Ekle " class="btn btn-warning rounded " />
+                    <input type="submit" value="Ürün Ekle " class="btn btn-warning rounded center " />
 
                 </div>
             </div>
@@ -233,7 +244,7 @@
                             "contentType": "application/json; charset=utf-8",
                             "data": function (d) {
                                 //d.dataqueryname = _defaulttablename;
-                                d.additionalvalues = [$("#Order_Slsman").val(), 1, "", "", "", "",""];
+                                d.additionalvalues = [$("#Order_Slsman").val(), 1, "", "", "", "", ""];
                                 return JSON.stringify(d);
                                 return d;
                             }
