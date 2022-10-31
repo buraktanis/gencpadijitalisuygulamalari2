@@ -5,15 +5,24 @@
 }
 
 <div class="">
-    <div class="bg-white  ">
-        <h2 class="pt-3 pb-4 pl-4"><strong>
-            Ekle</strong><i class="fas fa-arrow-left  border p-2  rounded-circle border-primary text-primary float-right" style="margin-right:2%;"></i></h2>
+      <div class="col-md-12">
+
+        <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb" style="padding-top:30px;">
+            <ol class="breadcrumb ">
+
+                <li class="breadcrumb-item active" aria-current="page ">
+                    <h3>
+                        Ekle
+                    </h3>
+                </li>
+            </ol>
+        </nav>
+
     </div>
-
 </div>
-<div class="bg-white  mt-4 " style="margin-left:2%;margin-right:2%;">
+<div class="bg-white  mt-4 ">
     <div class="row bg-white rounded">
-
+        <p> &nbsp; </p>
         <div class="col-sm-6">
             <form asp-action="Add">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -50,7 +59,7 @@
                     <span asp-validation-for="Stock" class="text-danger"></span>
                 </div>
 
-
+                <p> &nbsp; </p>
                 <div class="form-group">
                     <input type="submit" value="Kaydet" class="btn btn-primary" />
                 </div>
@@ -58,6 +67,7 @@
                     <div>
                         <a href="/Item/Index">Back to List</a>
                     </div>
+                    <p> &nbsp; </p>
                 </div>
             </form>
 

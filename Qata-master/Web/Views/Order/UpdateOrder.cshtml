@@ -7,19 +7,30 @@
 
 
 
-<div class="bg-white col-md-12 ">
-    <h2 class="pt-3 pb-4 pl-4"><strong>Sipariş Ekranı</strong><a asp-action="Index" class="fas fa-arrow-left  border p-2  rounded-circle border-primary text-primary float-right" style="margin-right:2%;"></a></h2>
-</div>
 
+        <div class="col-md-12">
 
-<div class="bg-white  mt-4" style="margin-left:2%;margin-right:2%;">
+            <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb" style="padding-top:30px;">
+                <ol class="breadcrumb ">
+
+                    <li class="breadcrumb-item active" aria-current="page ">
+                        <h3>
+                            Sipariş Ekranı
+                        </h3>
+                    </li>
+                </ol>
+            </nav>
+
+        </div>
+
+<div class="bg-white  mt-4">
     <form class="form-horizontal" asp-action="UpdateOrder">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input asp-for="Order.Id" hidden>
         <!--Müşteri Bilgileri-->
         <div class="row bg-white rounded ">
 
-            <h4 class="card-title pl-5 pt-5 col-sm-12"><strong>Sipariş</strong> <small>Bilgileri</small></h4>
+            <h4 class="card-title pl-5 pt-5 col-sm-12"><strong>Sipariş Bilgileri</strong> </h4>
 
             <hr class="container-fluid bg-light" />
             <div class="col-md-6 ">
@@ -168,7 +179,7 @@
     </form>
 </div>
 
-<div class="bg-white  mt-4" style="margin-left:2%;margin-right:2%;">
+<div class="bg-white  mt-4">
     <div class="row bg-white rounded">
 
         <div class="col-sm-12 row">

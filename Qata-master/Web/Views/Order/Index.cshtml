@@ -64,7 +64,7 @@
                             </div>
 
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-1">
                             <div class="form-group row p-2 ">
                                 <button class="btn btn-secondary mr-1 btn-raised   "><i class="fa fa-times"></i> Temizle</button>
                                 <button class="btn btn-warning mr-1 btn-raised" id="searchDiv"><i class="fa fa-search"></i> Uygula</button>
@@ -87,9 +87,10 @@
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <table id="recordtable" class="table table-bordered pt-0 pb-0">
-                        <thead class="thead-light ">
-                            <tr>
+                    <table id="recordtable" class="table table-sm table-striped table-bordered dataTable" style="width:100%; font-size:12px;">
+                        <thead style="background-color:#1f2937; height:42px;">
+
+                            <tr style="color:#F1F1F1; ">
                                 <th class="pt-1 pb-1">Sipariş No</th>
                                 <th class="pt-1 pb-1">Müşteri</th>
                                 <th class="pt-1 pb-1">Not</th>
@@ -194,19 +195,19 @@
                             console.log(data)
                             var html = ``;
                             if (data == -1) {
-                                html = `<span class="badge badge-secondary badge-pill  spnEtiket">Taslak</span>`;
+                                html = `<span>Taslak</span>`;
                             }
                             if (data == 0) {
-                                html = `<span class="badge badge-danger badge-pill  spnEtiket">Onaya Gönderildi</span>`;
+                                html = `<span>Onaya Gönderildi</span>`;
                             }
                             if (data ==1) {
-                                html = `<span class="badge badge-info badge-pill   spnEtiket">Logoya Gönderildi</span>`;
+                                html = `<span>Logoya Gönderildi</span>`;
                             }
                             if (data == 2) {
-                                html = `<span class="badge badge-warning badge-pill spnEtiket">Faturalandı</span>`;
+                                html = `<span>Faturalandı</span>`;
                             }
                             if (data == 3) {
-                                html = `<span class="badge badge-dark badge-dark badge-pill spnEtiket">Red Edildi</span>`;
+                                html = `<span>Red Edildi</span>`;
                             }
 
 
