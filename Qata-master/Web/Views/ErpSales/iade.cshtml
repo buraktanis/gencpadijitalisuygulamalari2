@@ -152,7 +152,7 @@
 
                     <div class="table-responsive">
 
-                        <table id="recordtable" class="table table-sm table-striped table-bordered dataTable" style="width:100%; font-size:12px;">
+                        <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
                             <thead style="background-color:#1f2937; height:42px;">
 
                                 <tr style="color:#F1F1F1; ">
@@ -166,7 +166,7 @@
 
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody >
                                 @if (CurrentSession.Roles.Contains("Yonetim") || CurrentSession.Roles.Contains("Yonetim"))
                                 {
                     @foreach (var item in Model.model1)

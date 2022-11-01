@@ -12,7 +12,7 @@
 
                     <li class="breadcrumb-item active" aria-current="page ">
                         <h3>
-                            Stok durumu
+                            Stok Durumu
                         </h3>
                     </li>
                 </ol>
@@ -28,7 +28,7 @@
 
                 </div>
                 <div class="col-sm-12">
-                     <table id="recordtable" class="table table-sm table-striped table-bordered dataTable" style="width:100%; font-size:12px;">
+                    <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
                         <thead style="background-color:#1f2937; height:42px;">
 
                             <tr style="color:#F1F1F1; ">
@@ -38,9 +38,10 @@
                                 <th class="pt-1 pb-1"> MalzemeGrupKodu</th>
                                 @if (CurrentSession.Roles.Contains("Yonetim"))
                                 {
-                    <th class="pt-1 pb-1"> Stok </th>
+                                    <th class="pt-1 pb-1"> Stok </th>
                                     <th class="pt-1 pb-1"> Bekleyen Sipariş(Logo) </th>
-                                                    <th class="pt-1 pb-1"> Bekleyen Sipariş(Crm) </th>}
+                                    <th class="pt-1 pb-1"> Bekleyen Sipariş(Crm) </th>
+}
                                 <th class="pt-1 pb-1"> Filli Stok </th>
 
                             </tr>
@@ -48,18 +49,20 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                <tr>
-                    <td>@item.Kod</td>
-                    <td>@item.AD</td>
-                    <td>@item.MarkaKodu</td>
-                    <td>@item.MalzemeGrupKodu</td>
-                    @if (CurrentSession.Roles.Contains("Yonetim"))
-                    {
-    <td>@item.STOK</td>
-                        <td>@item.ONAYLI_SIP</td>
-                                            <td>@item.Bekleyen_STOK</td>}
-                    <td class="text-danger "><h4>@(item.STOK - item.Bekleyen_STOK- item.ONAYLI_SIP)</h4></td>
-                </tr>}
+                                <tr>
+                                    <td>@item.Kod</td>
+                                    <td>@item.AD</td>
+                                    <td>@item.MarkaKodu</td>
+                                    <td>@item.MalzemeGrupKodu</td>
+                                    @if (CurrentSession.Roles.Contains("Yonetim"))
+                                    {
+                                        <td>@item.STOK</td>
+                                        <td>@item.ONAYLI_SIP</td>
+                                        <td>@item.Bekleyen_STOK</td>
+}
+                                    <td class="text-danger "><h4>@(item.STOK - item.Bekleyen_STOK- item.ONAYLI_SIP)</h4></td>
+                                </tr>
+}
 
 
                         </tbody>
@@ -83,6 +86,10 @@
         $(function () {
 
             $('#recordtable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                },
+
                 responsive: true,
                 pageLength: 10,
                 paging: true,

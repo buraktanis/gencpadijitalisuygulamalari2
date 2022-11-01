@@ -134,7 +134,7 @@
 
                     <div class="table-responsive">
 
-                        <table id="recordtable" class="table table-sm table-striped table-bordered dataTable" style="width:100%; font-size:12px;">
+                        <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
                             <thead style="background-color:#1f2937; height:42px;">
 
                                 <tr style="color:#F1F1F1; ">
@@ -160,177 +160,177 @@
                             <tbody>
                                 @if (CurrentSession.Roles.Contains("Yonetim") || CurrentSession.Roles.Contains("Yonetim"))
                                 {
-                    @foreach (var item in Model.model1)
-                    {
+                                    @foreach (var item in Model.model1)
+                                    {
 
 
 
 
-    <tr>
+                                        <tr>
 
-        <td>
+                                            <td>
 
-            @item.cariunvan
-        </td>
-        <td>
-            @item.Slsman
+                                                @item.cariunvan
+                                            </td>
+                                            <td>
+                                                @item.Slsman
 
-        </td>
+                                            </td>
 
-        <td style="text-align:right;">
+                                            <td style="text-align:right;">
 
-            @item.Yıl
+                                                @item.Yıl
 
-        </td>
-        <td style="text-align:right;">
+                                            </td>
+                                            <td style="text-align:right;">
 
-            @string.Format("₺ {0:0}", item.ikinciel)
+                                                @string.Format("₺ {0:0}", item.ikinciel)
 
-        </td>
-        <td style="text-align:right;">
+                                            </td>
+                                            <td style="text-align:right;">
 
-            @string.Format("₺ {0:0}", item.ikincielhamcihaz)
+                                                @string.Format("₺ {0:0}", item.ikincielhamcihaz)
 
-        </td>
-        <td style="text-align:right;">
+                                            </td>
+                                            <td style="text-align:right;">
 
-            @string.Format("₺ {0:0}", item.ikincielcihaz)
+                                                @string.Format("₺ {0:0}", item.ikincielcihaz)
 
-        </td>
-        <td style="text-align:right;">
+                                            </td>
+                                            <td style="text-align:right;">
 
-            @string.Format(" ₺ {0:0}   ", item.aksesuar)
+                                                @string.Format(" ₺ {0:0}   ", item.aksesuar)
 
-        </td>
-        <td style="text-align:right;">
+                                            </td>
+                                            <td style="text-align:right;">
 
-            @string.Format("₺ {0:0} ", item.cep_telefonu)
+                                                @string.Format("₺ {0:0} ", item.cep_telefonu)
 
-        </td>
-        <td style="text-align:right;">
+                                            </td>
+                                            <td style="text-align:right;">
 
-            @string.Format("₺ {0:0}", item.bilgisayar)
+                                                @string.Format("₺ {0:0}", item.bilgisayar)
 
-        </td>
-        <td style="text-align:right;">
+                                            </td>
+                                            <td style="text-align:right;">
 
-            @string.Format("₺ {0:0}", item.digerurun)
+                                                @string.Format("₺ {0:0}", item.digerurun)
 
-        </td>
-        <td style="text-align:right;">
+                                            </td>
+                                            <td style="text-align:right;">
 
-            @string.Format("₺ {0:0}", item.evaksesuari)
+                                                @string.Format("₺ {0:0}", item.evaksesuari)
 
-        </td>
-        <td style="text-align:right;">
+                                            </td>
+                                            <td style="text-align:right;">
 
-            @string.Format("₺ {0:0}", item.hoparlor)
+                                                @string.Format("₺ {0:0}", item.hoparlor)
 
-        </td>
-        <td style="text-align:right;">
+                                            </td>
+                                            <td style="text-align:right;">
 
-            @string.Format("₺ {0:0}", item.tablet)
+                                                @string.Format("₺ {0:0}", item.tablet)
 
-        </td>
-        <td style="text-align:right;">
+                                            </td>
+                                            <td style="text-align:right;">
 
-            @string.Format("₺ {0:0}", item.yenilenmiscihaz)
+                                                @string.Format("₺ {0:0}", item.yenilenmiscihaz)
 
-        </td>
-        <td style="text-align:right;">
+                                            </td>
+                                            <td style="text-align:right;">
 
-            @string.Format("₺ {0:0}", item.toplam)
+                                                @string.Format("₺ {0:0}", item.toplam)
 
-        </td>
-    </tr>
-}}
-                else
-                {
-    @foreach (var item in Model.model1)
-    {
-@if (@item.Slsman == @CurrentSession.Username)
-{
+                                            </td>
+                                        </tr>
+                                    }}
+                                else
+                                {
+                                    @foreach (var item in Model.model1)
+                                    {
+                                        @if (@item.Slsman == @CurrentSession.Username)
+                                        {
 
 
 
-<tr>
+                                            <tr>
 
-    <td>
+                                                <td>
 
-        @item.cariunvan
-    </td>
-    <td>
-        @item.Slsman
+                                                    @item.cariunvan
+                                                </td>
+                                                <td>
+                                                    @item.Slsman
 
-    </td>
+                                                </td>
 
-    <td style="text-align:right;">
+                                                <td style="text-align:right;">
 
-        @item.Yıl
+                                                    @item.Yıl
 
-    </td>
-    <td style="text-align:right;">
+                                                </td>
+                                                <td style="text-align:right;">
 
-        @string.Format("₺ {0:0}", item.ikinciel)
+                                                    @string.Format("₺ {0:0}", item.ikinciel)
 
-    </td>
-    <td style="text-align:right;">
+                                                </td>
+                                                <td style="text-align:right;">
 
-        @string.Format("₺ {0:0}", item.ikincielhamcihaz)
+                                                    @string.Format("₺ {0:0}", item.ikincielhamcihaz)
 
-    </td>
-    <td style="text-align:right;">
+                                                </td>
+                                                <td style="text-align:right;">
 
-        @string.Format("₺ {0:0}", item.ikincielcihaz)
+                                                    @string.Format("₺ {0:0}", item.ikincielcihaz)
 
-    </td>
-    <td style="text-align:right;">
+                                                </td>
+                                                <td style="text-align:right;">
 
-        @string.Format(" ₺ {0:0}   ", item.aksesuar)
+                                                    @string.Format(" ₺ {0:0}   ", item.aksesuar)
 
-    </td>
-    <td style="text-align:right;">
+                                                </td>
+                                                <td style="text-align:right;">
 
-        @string.Format("₺ {0:0} ", item.cep_telefonu)
+                                                    @string.Format("₺ {0:0} ", item.cep_telefonu)
 
-    </td>
-    <td style="text-align:right;">
+                                                </td>
+                                                <td style="text-align:right;">
 
-        @string.Format("₺ {0:0}", item.bilgisayar)
+                                                    @string.Format("₺ {0:0}", item.bilgisayar)
 
-    </td>
-    <td style="text-align:right;">
+                                                </td>
+                                                <td style="text-align:right;">
 
-        @string.Format("₺ {0:0}", item.digerurun)
+                                                    @string.Format("₺ {0:0}", item.digerurun)
 
-    </td>
-    <td style="text-align:right;">
+                                                </td>
+                                                <td style="text-align:right;">
 
-        @string.Format("₺ {0:0}", item.evaksesuari)
+                                                    @string.Format("₺ {0:0}", item.evaksesuari)
 
-    </td>
-    <td style="text-align:right;">
+                                                </td>
+                                                <td style="text-align:right;">
 
-        @string.Format("₺ {0:0}", item.hoparlor)
+                                                    @string.Format("₺ {0:0}", item.hoparlor)
 
-    </td>
-    <td style="text-align:right;">
+                                                </td>
+                                                <td style="text-align:right;">
 
-        @string.Format("₺ {0:0}", item.tablet)
+                                                    @string.Format("₺ {0:0}", item.tablet)
 
-    </td>
-    <td style="text-align:right;">
+                                                </td>
+                                                <td style="text-align:right;">
 
-        @string.Format("₺ {0:0}", item.yenilenmiscihaz)
+                                                    @string.Format("₺ {0:0}", item.yenilenmiscihaz)
 
-    </td>
-    <td style="text-align:right;">
+                                                </td>
+                                                <td style="text-align:right;">
 
-        @string.Format("₺ {0:0}", item.toplam)
+                                                    @string.Format("₺ {0:0}", item.toplam)
 
-    </td>
-</tr>
-}}}
+                                                </td>
+                                            </tr>
+                                        }}}
                             </tbody>
 
                         </table>

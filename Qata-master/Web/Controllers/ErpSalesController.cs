@@ -24,6 +24,8 @@ namespace Web.Controllers
         {
             _erpSalesManagement = erpSalesManagement;
         }
+        
+
         public IActionResult Sale()
         {
             return View();
@@ -346,6 +348,28 @@ FROM            dbo.ERP_AYRINTILI_FATURA where  Slsman!='SAVAŞ KAYACAN' and Sls
 GROUP BY [Malzeme Grup Kodu], Yıl, AY, Slsman", yıl, ay).GetDynamicQuery("SCSlogo");
 
             return View(model);
+        }
+
+        public IActionResult cariekstresi(string bastarih,string bistarih)
+        {
+            string tarih1 = string.Format(" ' {0} ' ", bastarih);
+            string tarih2 = string.Format(" ' {0} ' ", bistarih);
+
+            var model = new cariModel();
+
+            model.model1 = string.Format(@"SELECT [CH KODU]
+      ,[CH ÜNVANI] as chunvani,
+      [TARIH]
+      ,[HAREKET_TURU]
+      ,[BORÇ]
+      ,[ALACAK]
+      ,[BAKIYE]
+      ,[TEMSİLCİ]
+      
+  FROM [tiger].[dbo].[ARY_XXX_CARI_EKSTRE] where TARIH between {0} and {1}", tarih1,tarih2).GetDynamicQuery("SCSlogo");
+
+            return View(model);
+
         }
 
         public IActionResult gtstemsilci()

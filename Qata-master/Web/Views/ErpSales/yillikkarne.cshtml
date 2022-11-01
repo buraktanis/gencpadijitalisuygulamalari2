@@ -3,7 +3,7 @@
 
 @model yillikkarneModel
 @{ ViewData["Title"] = "bayiPerformans";
-    
+
 
 
     List<string> moonlist = new List<string>();
@@ -156,7 +156,7 @@
         <div class="card mb-2">
             <div class="card-body table-responsive">
                 <div class="row">
-                    <div class=" col-md-1 form-group">
+                    <div class=" col-md-1 ">
                         <label for="2022">2022</label>
                         <input type="radio" name="yil" value="2022" id="2022" />
                     </div>
@@ -215,18 +215,17 @@
         <div class="card  mb-1">
 
             <div class="card-body">
-                <h3> #Ciro</h3>
+                <h3> <span class="badge badge-success ">#Ciro</span></h3>
 
                 <div class="table-responsive">
-                    <table id="recordtable" class="table table-sm table-striped table-bordered dataTable" style="width:100%; font-size:12px;">
-                        <thead style="background-color:#1f2937; height:42px;">
 
-                            <tr style="color:#F1F1F1; ">
+                    <table class="table-bordered display" style="width:100%; font-size:13px;">
+                        <thead class="thead-light">
+                            <tr>
                                 <th class="baslik">Kullanıcı</th>
                                 @foreach (var item in Helpertype.Aylar.Where(x => moonlist.Contains(x.Key.ToString())))
                                 {
-                    <th scope="col" class="baslik">@item.Value</th>
-}
+                    <th scope="col" class="baslik">@item.Value</th>}
                                 <th class="baslik isgenel">Ortalama</th>
                                 <th class="baslik isgenel">Toplam</th>
                             </tr>
@@ -258,8 +257,7 @@
                         </p>}
 
 
-    </td>
-}
+    </td>}
                     <td style="font-weight:900;color:forestgreen" class="isgenel">
                         <p>
                             @string.Format("{0:C0}", Model.yillikkarne.Where(x => x.kullanici == kullanici.Key).Average(a => a.ciro))
@@ -273,8 +271,7 @@
 
                         </p>
                     </td>
-                </tr>
-}
+                </tr>}
 
 
 
@@ -291,8 +288,7 @@
                             @string.Format("{0:C0}", Model.yillikkarne.Where(x => x.ay == ay.Key).Sum(a => a.ciro))
 
                         </h6>
-                    </td>
-}
+                    </td>}
                                 <td>
                                     <h6>
                                         *
@@ -320,8 +316,7 @@
                             @string.Format("{0:C0}", Model.yillikkarne.Where(x => x.ay == ay.Key).Average(a => a.ciro))
 
                         </h6>
-                    </td>
-}
+                    </td>}
 
                                 <td>
                                     <h6>
@@ -351,18 +346,16 @@
         <div class="card  mb-3">
 
             <div class="card-body">
-                <h3>#Kar</h3>
+                <h3> <span class="badge badge-info ">#Kar</span></h3>
                 <div class="table-responsive">
 
-                    <table id="recordtable" class="table table-sm table-striped table-bordered dataTable" style="width:100%; font-size:12px;">
-                        <thead style="background-color:#1f2937; height:42px;">
-
-                            <tr style="color:#F1F1F1; ">
+                    <table class="table-bordered display" style="width:100%; font-size:13px;">
+                        <thead class="thead-light">
+                            <tr>
                                 <th class="baslik">Kullanıcı</th>
                                 @foreach (var item in Helpertype.Aylar.Where(x => moonlist.Contains(x.Key.ToString())))
                                 {
-                    <th scope="col" class="baslik">@item.Value</th>
-}
+                    <th scope="col" class="baslik">@item.Value</th>}
 
                                 <th class="baslik isgenel">Ortalama</th>
                                 <th class="baslik isgenel">Toplam</th>
@@ -395,8 +388,7 @@
                         </p>}
 
 
-    </td>
-}
+    </td>}
                     <td style="font-weight:900;color:forestgreen" class="isgenel">
                         <p>
                             @string.Format("{0:C0}", Model.yillikkarne.Where(x => x.kullanici == kullanici.Key).Average(a => a.kar))
@@ -410,8 +402,7 @@
                         </p>
                     </td>
 
-                </tr>
-}
+                </tr>}
 
 
 
@@ -431,8 +422,7 @@
                             @string.Format("{0:C0}", Model.yillikkarne.Where(x => x.ay == ay.Key).Average(a => a.kar))
 
                         </h6>
-                    </td>
-}
+                    </td>}
 
                                 <td>
                                     <h6>
@@ -460,8 +450,7 @@
                             @string.Format("{0:C0}", Model.yillikkarne.Where(x => x.ay == ay.Key).Sum(a => a.kar))
 
                         </h6>
-                    </td>
-}
+                    </td>}
                                 <td>
                                     <h6>
                                         *
@@ -488,18 +477,16 @@
 
             <div class="card-body">
 
-                <h3>#Firma </h3>
+                <h3><span class="badge badge-dark ">#Firma</span> </h3>
                 <div class="table-responsive">
 
-                    <table id="recordtable" class="table table-sm table-striped table-bordered dataTable" style="width:100%; font-size:12px;">
-                        <thead style="background-color:#1f2937; height:42px;">
-
-                            <tr style="color:#F1F1F1; ">
+                    <table class="table-bordered display" style="width:100%; font-size:13px;">
+                        <thead class="thead-light">
+                            <tr>
                                 <th class="baslik">Kullanıcı</th>
                                 @foreach (var item in Helpertype.Aylar.Where(x => moonlist.Contains(x.Key.ToString())))
                                 {
-                    <th scope="col" class="baslik">@item.Value</th>
-}
+                    <th scope="col" class="baslik">@item.Value</th>}
 
                                 <th class="baslik isgenel">Ortalama</th>
                                 <th class="baslik isgenel">Toplam</th>
@@ -532,8 +519,7 @@
                         </p>}
 
 
-    </td>
-}
+    </td>}
                     <td style="font-weight:900;color:forestgreen" class="isgenel">
                         <p>
                             @Model.yillikkarne.Where(x => x.kullanici == kullanici.Key).Average(a => a.firma)
@@ -547,8 +533,7 @@
                         </p>
                     </td>
 
-                </tr>
-}
+                </tr>}
 
                         </tbody>
                         <tfoot>
@@ -565,8 +550,7 @@
                             @string.Format("{0:0}", Model.yillikkarne.Where(x => x.ay == ay.Key).Average(a => a.firma))
 
                         </h6>
-                    </td>
-}
+                    </td>}
 
                                 <td>
                                     <h6>
@@ -594,8 +578,7 @@
                             @string.Format("{0:0}", Model.yillikkarne.Where(x => x.ay == ay.Key).Sum(a => a.firma))
 
                         </h6>
-                    </td>
-}
+                    </td>}
                                 <td>
                                     <h6>
                                         *
@@ -621,18 +604,16 @@
 
             <div class="card-body">
 
-                <h3>#Adet</h3>
+                <h3><span class="badge badge-success ">#Adet</span> </h3>
                 <div class="table-responsive">
 
-                     <table id="recordtable" class="table table-sm table-striped table-bordered dataTable" style="width:100%; font-size:12px;">
-                        <thead style="background-color:#1f2937; height:42px;">
-
-                            <tr style="color:#F1F1F1; ">
+                    <table class="table-bordered display" style="width:100%; font-size:13px;">
+                        <thead class="thead-light">
+                            <tr>
                                 <th class="baslik">Kullanıcı</th>
                                 @foreach (var item in Helpertype.Aylar.Where(x => moonlist.Contains(x.Key.ToString())))
                                 {
-                    <th scope="col" class="baslik">@item.Value</th>
-}
+                    <th scope="col" class="baslik">@item.Value</th>}
                                 <th class="baslik isgenel">Ortalama</th>
                                 <th class="baslik isgenel">Toplam</th>
                             </tr>
@@ -664,8 +645,7 @@
                         </p>}
 
 
-    </td>
-}
+    </td>}
                     <td style="font-weight:900;color:forestgreen" class="isgenel">
                         <p>
                             @Model.yillikkarne.Where(x => x.kullanici == kullanici.Key).Average(a => a.adet)
@@ -678,8 +658,7 @@
 
                         </p>
                     </td>
-                </tr>
-}
+                </tr>}
 
 
 
@@ -698,8 +677,7 @@
                             @string.Format("{0:0}", Model.yillikkarne.Where(x => x.ay == ay.Key).Average(a => a.adet))
 
                         </h6>
-                    </td>
-}
+                    </td>}
 
                                 <td>
                                     <h6>
@@ -727,8 +705,7 @@
                             @string.Format("{0:0}", Model.yillikkarne.Where(x => x.ay == ay.Key).Sum(a => a.adet))
 
                         </h6>
-                    </td>
-}
+                    </td>}
                                 <td>
                                     <h6>
                                         *
@@ -753,19 +730,17 @@
         <div class="card  mb-1">
 
             <div class="card-body">
-                <h3> #Çeşit</h3>
+                <h3> <span class="badge badge-warning ">#Çeşit</span></h3>
 
                 <div class="table-responsive">
 
-                    <table id="recordtable" class="table table-sm table-striped table-bordered dataTable" style="width:100%; font-size:12px;">
-                        <thead style="background-color:#1f2937; height:42px;">
-
-                            <tr style="color:#F1F1F1; ">
+                    <table class="table-bordered display" style="width:100%; font-size:13px;">
+                        <thead class="thead-light">
+                            <tr>
                                 <th class="baslik">Kullanıcı</th>
                                 @foreach (var item in Helpertype.Aylar.Where(x => moonlist.Contains(x.Key.ToString())))
                                 {
-                    <th scope="col" class="baslik">@item.Value</th>
-}
+                    <th scope="col" class="baslik">@item.Value</th>}
                                 <th class="baslik isgenel">Ortalama</th>
                                 <th class="baslik isgenel">Toplam</th>
                             </tr>
@@ -797,8 +772,7 @@
                         </p>}
 
 
-    </td>
-}
+    </td>}
                     <td style="font-weight:900;color:forestgreen" class="isgenel">
                         <p>
                             @Model.yillikkarne.Where(x => x.kullanici == kullanici.Key).Average(a => a.cesit)
@@ -811,8 +785,7 @@
 
                         </p>
                     </td>
-                </tr>
-}
+                </tr>}
 
                         </tbody>
                         <tfoot>
@@ -829,8 +802,7 @@
                             @string.Format("{0:0}", Model.yillikkarne.Where(x => x.ay == ay.Key).Average(a => a.cesit))
 
                         </h6>
-                    </td>
-}
+                    </td>}
 
                                 <td>
                                     <h6>
@@ -858,8 +830,7 @@
                             @string.Format("{0:0}", Model.yillikkarne.Where(x => x.ay == ay.Key).Sum(a => a.cesit))
 
                         </h6>
-                    </td>
-}
+                    </td>}
                                 <td>
                                     <h6>
                                         *

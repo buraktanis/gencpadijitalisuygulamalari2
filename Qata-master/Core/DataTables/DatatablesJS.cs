@@ -203,6 +203,12 @@ namespace Core.DataTables
 
                 return result;
             }
+
+            public object getresults(DatatablesObject requestobj)
+            {
+                throw new NotImplementedException();
+            }
+
             public string CleanTexts(string txtResponse)
             {
                 txtResponse = txtResponse.Replace("'", "&#39;");
@@ -212,6 +218,11 @@ namespace Core.DataTables
                 txtResponse = txtResponse.Replace(">", "&gt;");
 
                 return txtResponse;
+            }
+
+            public DataTablesObjectResult getresults(DatatablesObject requestobj, string query)
+            {
+                throw new NotImplementedException();
             }
         }
 

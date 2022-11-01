@@ -1,4 +1,5 @@
 ﻿
+
 @{ ViewData["Title"] = "Index";
                  }
 
@@ -18,7 +19,7 @@
                 "stateSave": false,
                 "pagingType": "full_numbers",
                 "ajax": {
-                    "url": "/GTS/datatables",
+                    "url": "/ErpSales/datatables",
                     "type": "POST",
                     "contentType": "application/json; charset=utf-8",
                     "data": function (d) {
@@ -85,7 +86,7 @@
                 "stateSave": false,
                 "pagingType": "full_numbers",
                 "ajax": {
-                    "url": "/GTS/datatables",
+                    "url": "/ErpSales/datatables",
                     "type": "POST",
                     "contentType": "application/json; charset=utf-8",
                     "data": function (d) {
@@ -234,7 +235,7 @@
         <div class="card-body">
 
             <div class="table-responsive">
-                <table id="recordtable1" class="table-bordered display" style="width:100%; font-size:12px;">
+                <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
                     <thead style="background-color:#1f2937; height:42px;">
                         <tr style="color:#F1F1F1; ">
                             <th>Temsilci</th>
@@ -262,7 +263,7 @@
                 <div class="card-body">
 
                     <div class="table-responsive">
-                        <table id="recordtable" class="table-bordered display" style="width:100%; font-size:12px; border-style:solid; border-width:1px;">
+                        <table id="recordtable1" class="table-bordered display" style="width:100%; font-size:12px; border-style:solid; border-width:1px;">
                             <thead style="background-color:#1f2937; height:42px;">
                                 <tr style="color:#F1F1F1; ">
                                     <th>Logo Id</th>

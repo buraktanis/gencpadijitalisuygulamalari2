@@ -63,6 +63,9 @@
 
             recordtable = $('#recordtable').DataTable({
                 "pageLength": -1,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                },
                 "serverSide": true,
                 //"jQueryUI": true,
                 "stateSave": false,
@@ -87,6 +90,7 @@
                     },
                     //the remaining buttons here 
                 }],
+
                 "columns": [
                     { "data": "tip" },
                     { "data": "id", "visible": false },
@@ -282,7 +286,7 @@
         <div class="col-md-12">
             <div class="table-responsive">
 
-                <table id="siparisdetailtable" class="table table-sm table-striped table-bordered dataTable">
+                <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
                     <thead class="thead-light">
                         <tr>
                             <th>Ürün</th>

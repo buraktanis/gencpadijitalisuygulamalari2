@@ -15,6 +15,34 @@ namespace Business.ErpSalesManagement
     {
 
 
+        public DataTablesObjectResult GetCARIEKSTRE(DatatablesObject requestobj)
+        {
+            string query = string.Format(@" SELECT [CH ÜNVANI] unvan, TARIH tarih, ISLEMNO islemno, CEILING(BORÇ) borc, CEILING(ALACAK) alacak, CEILING(BAKIYE) bakiye, TEMSİLCİ temsilci, [CH KODU]carikodu, HAREKET_TURU hareketturu
+            FROM ARY_XXX_CARI_EKSTRE_LOGOB2B  ");
+
+            requestobj.dbtype = "SCSlogo";
+
+            string privadewhere = "";
+            var codu = requestobj.additionalvalues.ElementAt(0);
+
+            if (!codu.Trim().isNull())
+            {
+                privadewhere = string.Format(" t.[carikodu]='{0}' ", codu);
+            }
+
+
+            if (!requestobj.additionalvalues.ElementAt(1).isNull() && !requestobj.additionalvalues.ElementAt(2).isNull())
+            {
+                if (!privadewhere.isNull())
+                {
+                    privadewhere = privadewhere + " AND ";
+                }
+
+                privadewhere = privadewhere + string.Format(" t.[tarih] BETWEEN '{0}' AND '{1}' ", requestobj.additionalvalues.ElementAt(1), requestobj.additionalvalues.ElementAt(2));
+            }
+
+            return new DataTablesObjectResult().getresults(requestobj, query, privadewhere);
+        }
 
         public DataResult<dynamic> Gettahsilatraporus(string tempsorgu)
         {

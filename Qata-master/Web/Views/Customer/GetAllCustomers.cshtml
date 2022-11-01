@@ -151,7 +151,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <table id="recordtable" class="table table-sm table-striped table-bordered dataTable" style="width:100%; font-size:12px;">
+                    <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
                         <thead style="background-color:#1f2937; height:42px;">
 
                             <tr style="color:#F1F1F1; ">
@@ -222,23 +222,25 @@
                 recordtable.draw();
             });
             recordtable = $('#recordtable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                },
                 "responsive": true,
                 "serverSide": true,
                 "searching": false,
                 "lengthChange": true,
                 //"jQueryUI": true,
                 "stateSave": false,
-                buttons: [
-
-                    {
-                        titleAttr: "Excel'e Aktar",
-                        extend: 'excelHtml5',
-                        text: '<i class="fa fa-file-excel"></i>',
-                        className: "btn btn-success",
-                        title: $("h4.page-title").html(),
-                        filename: moment().format("YYYY.MM.DD_HH.mm")
-                    }
-                ],
+                buttons: [{
+                    extend: 'excel',
+                    exportOptions: {
+                        modifier: {
+                            page: 'all',
+                            search: 'none'
+                        }
+                    },
+                    //the remaining buttons here 
+                }],
                 "pagingType": "full_numbers",
                 "ajax": {
                     "url": "/Customer/GetCustomerDatatables",

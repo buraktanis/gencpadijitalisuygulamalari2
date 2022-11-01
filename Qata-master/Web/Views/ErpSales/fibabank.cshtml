@@ -98,10 +98,10 @@
 
                     <div class="table-responsive">
 
-                            <table id="recordtable" class="table table-sm table-striped table-bordered dataTable" style="width:100%; font-size:12px;">
-                                <thead style="background-color:#1f2937; height:42px;">
+                        <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
+                            <thead style="background-color:#1f2937; height:42px;">
 
-                                    <tr style="color:#F1F1F1; ">
+                                <tr style="color:#F1F1F1; ">
                                     <th>Sipariş No</th>
                                     <th>Sipariş Tarihi</th>
                                     <th>Tarih</th>
@@ -114,84 +114,84 @@
                             <tbody>
                                 @if (CurrentSession.Roles.Contains("Yonetim") || CurrentSession.Roles.Contains("Yonetim"))
                                 {
-                    @foreach (var item in Model)
-                    {
+                                    @foreach (var item in Model)
+                                    {
 
-    <tr>
+                                        <tr>
 
-        <td>
+                                            <td>
 
-            @item.Siparisno
-        </td>
-        <td>
-            @item.Siparisdate
+                                                @item.Siparisno
+                                            </td>
+                                            <td>
+                                                @item.Siparisdate
 
-        </td>
-        <td>
-            @item.DAT
-        </td>
+                                            </td>
+                                            <td>
+                                                @item.DAT
+                                            </td>
 
-        <td>
-            @item.DEFINITION_
-        </td>
-        <td>
-            @item.Fiyat
+                                            <td>
+                                                @item.DEFINITION_
+                                            </td>
+                                            <td>
+                                                @item.Fiyat
 
-        </td>
-        <td>
-            @item.Toplamtutar
-        </td>
-        <td>
-            @item.SatisTemsilcisi
-        </td>
-
-
-
-
-
-
-    </tr>
-} }
-                else
-                {
-    @foreach (var item in Model)
-    {
-@if (@item.SatisTemsilcisi == @CurrentSession.Username)
-{
-<tr>
-
-    <td>
-
-        @item.Siparisno
-    </td>
-    <td>
-        @item.Siparisdate
-
-    </td>
-    <td>
-        @item.DAT
-    </td>
-    <td>
-        @item.DEFINITION_
-    </td>
-    <td>
-        @item.Fiyat
-
-    </td>
-    <td>
-        @item.Toplamtutar
-    </td>
-    <td>
-        @item.SatisTemsilcisi
-    </td>
+                                            </td>
+                                            <td>
+                                                @item.Toplamtutar
+                                            </td>
+                                            <td>
+                                                @item.SatisTemsilcisi
+                                            </td>
 
 
 
 
 
 
-</tr>
-}}}
+                                        </tr>
+                                    } }
+                                else
+                                {
+                                    @foreach (var item in Model)
+                                    {
+                                        @if (@item.SatisTemsilcisi == @CurrentSession.Username)
+                                        {
+                                            <tr>
+
+                                                <td>
+
+                                                    @item.Siparisno
+                                                </td>
+                                                <td>
+                                                    @item.Siparisdate
+
+                                                </td>
+                                                <td>
+                                                    @item.DAT
+                                                </td>
+                                                <td>
+                                                    @item.DEFINITION_
+                                                </td>
+                                                <td>
+                                                    @item.Fiyat
+
+                                                </td>
+                                                <td>
+                                                    @item.Toplamtutar
+                                                </td>
+                                                <td>
+                                                    @item.SatisTemsilcisi
+                                                </td>
+
+
+
+
+
+
+                                            </tr>
+                                        }}}
                             </tbody>
 
                         </table>

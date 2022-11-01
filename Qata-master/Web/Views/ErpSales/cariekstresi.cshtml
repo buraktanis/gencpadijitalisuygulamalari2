@@ -1,0 +1,234 @@
+﻿@model cariModel
+
+
+
+@{ ViewData["Title"] = "Stok Maliyet"; }
+
+
+@section Scripts{
+    <script type="text/javascript" language="”JavaScript”">window.history.forward(1);</script>
+
+    <script type="text/javascript">
+var recordtable;
+        var _defaulttablename = "stokmaliyetQuery";
+
+
+
+
+
+
+        $(function () {
+
+
+            buttons: [{
+                extend: 'excel',
+                exportOptions: {
+                    modifier: {
+                        page: 'all',
+                        search: 'none'
+                    }
+                },
+                //the remaining buttons here
+            }],
+            $('#recordtable').DataTable({
+
+                buttons: [{
+                    extend: 'excel',
+                    exportOptions: {
+                        modifier: {
+                            page: 'all',
+                            search: 'none'
+                        }
+                    },
+                    //the remaining buttons here
+                }],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                },
+                pageLength: 50,
+                paging: true,
+                searching: true,
+
+
+
+            });
+
+
+
+
+        });</script>
+
+
+}
+
+
+
+<div class="col-md-12">
+
+    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb" style="padding-top:30px;">
+        <ol class="breadcrumb ">
+
+            <li class="breadcrumb-item active" aria-current="page ">
+                <h3>
+                    Cari Ekstresi
+                </h3>
+            </li>
+        </ol>
+    </nav>
+
+</div>
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="form-group col-md-2  p-3">
+            <label>Temsilci </label>
+            <input id="temsilci" class="form-control " placeholder="Temsilci" value="@CurrentSession.Username" disabled>
+        </div>
+        <div class="col-12">
+            <div class="card">
+
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card">
+
+                <div class="form-group col-md-3 p-3">
+                    <label>İşlem Tarihi</label>
+                    <form action="/ErpSales/cariekstresi" method="get">
+                        <div class="input-daterange input-group" id="datepicker">
+                            <input type="text" class="input-sm form-control" name="bastarih"
+                                   value="@DateTime.Now.AddDays(-10).ToString("yyyy-MM-dd")"
+                                   id="bastarih"
+                                   placeholder="Start" />
+                            <span class="input-group-addon"></span>
+                            <input type="text" class="input-sm form-control" name="bistarih"
+                                   value="@DateTime.Now.ToString("yyyy-MM-dd")"
+                                   id="bistarih"
+                                   placeholder="End" />
+                        </div>
+                        <div class="form-group col-md-1 p-3">
+                            <button style="background-color:#f0bc74;margin-top: 26px;" class="btn  form-control" id="btnara">Ara </button>
+                        </div>
+                    </form>
+
+
+                </div>
+
+                    <div class="table-responsive">
+
+                        <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
+                            <thead style="background-color:#1f2937; height:42px;">
+
+                                <tr style="color:#F1F1F1; ">
+                                    <th>Firma Adı</th>
+                                    <th>Hareket Türü</th>
+                                    <th>Borç</th>
+                                    <th>Alacak</th>
+                                    <th>Bakiye</th>
+                                    <th>Temsilci</th>
+                                    
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (CurrentSession.Roles.Contains("Yonetim") || CurrentSession.Roles.Contains("Yonetim"))
+                                {
+                                    @foreach (var item in Model.model1)
+                                    {
+
+
+
+
+                                        <tr>
+
+                                            <td>
+
+                                                @item.chunvani
+                                            </td>
+                                            <td>
+                                                @item.HAREKET_TURU
+
+                                            </td>
+
+                                            <td >
+
+                                                @item.BORÇ
+
+                                            </td>
+                                            <td >
+
+                                                @item.ALACAK
+
+                                            </td>
+                                            <td >
+
+                                                @item.BAKIYE
+
+                                            </td>
+                                            <td >
+
+                                                 @item.TEMSİLCİ
+
+                                            </td>
+                                            
+                                        </tr>
+                                    }}
+                                else
+                                {
+                                    @foreach (var item in Model.model1)
+                                    {
+                                        @if (@item.TEMSİLCİ == @CurrentSession.Username)
+                                        {
+
+
+
+                            <tr>
+
+                                <td>
+
+                                    @item.chunvani
+                                </td>
+                                <td>
+                                    @item.HAREKET_TURU
+
+                                </td>
+
+                                <td>
+
+                                    @item.BORÇ
+
+                                </td>
+                                <td>
+
+                                    @item.ALACAK
+
+                                </td>
+                                <td>
+
+                                    @item.BAKIYE
+
+                                </td>
+                                <td>
+
+                                    @item.TEMSİLCİ
+
+                                </td>
+
+                            </tr>
+                                        }}}
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

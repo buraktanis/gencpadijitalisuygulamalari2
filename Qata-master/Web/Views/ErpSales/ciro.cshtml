@@ -146,7 +146,7 @@
 
                     <div class="table-responsive">
 
-                        <table id="recordtable" class="table table-sm table-striped table-bordered dataTable" style="width:100%; font-size:12px;">
+                        <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
                             <thead style="background-color:#1f2937; height:42px;">
 
                                 <tr style="color:#F1F1F1; ">
@@ -163,95 +163,97 @@
                                 @if (CurrentSession.Roles.Contains("Yonetim") || CurrentSession.Roles.Contains("Yonetim"))
                                 {
 
-                    @foreach (var item in Model.model1)
-                    {
-                        {
-                            Model.ciroToplam = Model.ciroToplam + item.ciro;
-                            Model.iadeToplam = Model.iadeToplam + item.İade;
-                            Model.netToplam = Model.netToplam + item.Net;
-                        }
-    <tr>
-        <td>
-            @item.Satis_Temsilcisi
+                                    @foreach (var item in Model.model1)
+                                    {
+                                        {
+                                            Model.ciroToplam = Model.ciroToplam + item.ciro;
+                                            Model.iadeToplam = Model.iadeToplam + item.İade;
+                                            Model.netToplam = Model.netToplam + item.Net;
+                                        }
+                                        <tr>
+                                            <td>
+                                                @item.Satis_Temsilcisi
 
-        </td>
-        <td>
-            @item.malzeme_grup_kodu
+                                            </td>
+                                            <td>
+                                                @item.malzeme_grup_kodu
 
-        </td>
-        <td>
-            @item.Yıl
+                                            </td>
+                                            <td>
+                                                @item.Yıl
 
-        </td>
-        <td>
-            @item.AY
+                                            </td>
+                                            <td>
+                                                @item.AY
 
-        </td>
-        <td style="text-align:right">
-            @string.Format("{0:0,0.00} ₺", item.ciro)
+                                            </td>
+                                            <td style="text-align:right">
+                                                @string.Format("{0:0,0.00} ₺", item.ciro)
 
-        </td>
-        <td style="text-align:right">
-            @string.Format("{0:0,0.00} ₺", item.İade)
+                                            </td>
+                                            <td style="text-align:right">
+                                                @string.Format("{0:0,0.00} ₺", item.İade)
 
-        </td>
-        <td style="font-weight=500; text-align:right">
-            <b>
-                @string.Format("{0:0,0.00} ₺", item.Net)
-            </b>
+                                            </td>
+                                            <td style="font-weight=500; text-align:right">
+                                                <b>
+                                                    @string.Format("{0:0,0.00} ₺", item.Net)
+                                                </b>
 
-        </td>
+                                            </td>
 
-    </tr>}}
+                                        </tr>
+}}
 
-                else
-                {
+                                else
+                                {
 
 
-    @foreach (var item in Model.model1)
-    {
-@if (item.Satis_Temsilcisi == CurrentSession.Username)
-{
-    {
-        Model.ciroToplam = Model.ciroToplam + item.ciro;
-        Model.iadeToplam = Model.iadeToplam + item.İade;
-        Model.netToplam = Model.netToplam + item.Net;
-    }
+                                    @foreach (var item in Model.model1)
+                                    {
+                                        @if (item.Satis_Temsilcisi == CurrentSession.Username)
+                                        {
+                                            {
+                                                Model.ciroToplam = Model.ciroToplam + item.ciro;
+                                                Model.iadeToplam = Model.iadeToplam + item.İade;
+                                                Model.netToplam = Model.netToplam + item.Net;
+                                            }
 
-<tr>
+                                            <tr>
 
-    <td>
-        @item.Satis_Temsilcisi
+                                                <td>
+                                                    @item.Satis_Temsilcisi
 
-    </td>
-    <td>
-        @item.malzeme_grup_kodu
+                                                </td>
+                                                <td>
+                                                    @item.malzeme_grup_kodu
 
-    </td>
-    <td>
-        @item.Yıl
+                                                </td>
+                                                <td>
+                                                    @item.Yıl
 
-    </td>
-    <td>
-        @item.AY
+                                                </td>
+                                                <td>
+                                                    @item.AY
 
-    </td>
-    <td style="text-align:right">
-        @string.Format("{0:0,0.00} ₺", item.ciro)
+                                                </td>
+                                                <td style="text-align:right">
+                                                    @string.Format("{0:0,0.00} ₺", item.ciro)
 
-    </td>
-    <td style="text-align:right">
-        @string.Format("{0:0,0.00} ₺", item.İade)
+                                                </td>
+                                                <td style="text-align:right">
+                                                    @string.Format("{0:0,0.00} ₺", item.İade)
 
-    </td>
-    <td style="font-weight=500;  text-align:right">
-        <b>
-            @string.Format("{0:0,0.00} ₺", item.Net)
-        </b>
+                                                </td>
+                                                <td style="font-weight=500;  text-align:right">
+                                                    <b>
+                                                        @string.Format("{0:0,0.00} ₺", item.Net)
+                                                    </b>
 
-    </td>
+                                                </td>
 
-</tr>}}}
+                                            </tr>
+}}}
                             </tbody>
                             <tfoot>
                                 <tr>

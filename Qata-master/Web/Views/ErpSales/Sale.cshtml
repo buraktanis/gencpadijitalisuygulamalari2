@@ -130,7 +130,7 @@
 
         <div class="table-responsive">
 
-            <table id="recordtable" class="table table-sm table-striped table-bordered dataTable" style="width:100%; font-size:12px;">
+            <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
                 <thead style="background-color:#1f2937; height:42px;">
 
                     <tr style="color:#F1F1F1; ">
@@ -155,14 +155,14 @@
                         <th rowspan="1" colspan="1"></th>
                         <th rowspan="1" colspan="1" class="text-right"><h3>Toplam:</h3></th>
                         <th class="text-center" rowspan="1" colspan="1">
-                            <h3 id="adetdizitext"></h3>
+                            <h6 id="adetdizitext"></h6>
                         </th>
                         <th class="text-right" rowspan="1" colspan="1">
 
-                            <h3 id="cirodizitext"></h3>
+                            <h6 id="cirodizitext"></h6>
                         </th>
                         <th class="text-right" rowspan="1" colspan="1">
-                            <h3 id="kardizitext"></h3>
+                            <h6 id="kardizitext"></h6>
                         </th>
                         <th class="text-right" rowspan="1" colspan="1"></th>
                         <th class="text-right" rowspan="1" colspan="1"></th>
@@ -269,6 +269,9 @@
             });
 
             recordtable = $('#recordtable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                },
                 "pageLength": -1,
                 "serverSide": true,
                 //"jQueryUI": true,
@@ -325,7 +328,7 @@
                         "data": null, className: "text-center", "render": function (data, type, row) {
 
 
-                            return "<a title='Detay' data-faturano='" + row.faturano + "' class='btn btn-outline-success mb-1 btndetail' data-toggle='tooltip' >Detay<i class='simple-icon-magic-wand'></i></a>";
+                            return "<a title='Detay' data-faturano='" + row.faturano + "' style='padding: 4px 12px' class='btn btn-outline-success mb-1 btndetail' data-toggle='tooltip' >Detay<i class='simple-icon-magic-wand'></i></a>";
 
                         }
                     }

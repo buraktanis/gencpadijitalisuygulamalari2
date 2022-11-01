@@ -29,5 +29,7 @@ namespace Business.ErpSalesManagement
         public DataResult<List<Brandperformas>> markaay();
         public DataResult<List<Brandperformas>> markagun();
         public DataResult<List<Accountcodemapping>> GetAccountcodelist();
+        DataTablesObjectResult GetCARIEKSTRE(DatatablesObject requestobj);
+
     }
 }

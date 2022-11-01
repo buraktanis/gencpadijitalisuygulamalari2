@@ -1,6 +1,4 @@
-﻿@model dynamic
-
-@{ ViewData["Title"] = "Şiparişler"; }
+﻿
 
 
 
@@ -56,16 +54,14 @@
                             {
                 @foreach (var item in Model)
                 {
-<option value="@item.kodu">@item.unvan</option>
-} }
+<option value="@item.kodu">@item.unvan</option>} }
             else
             {
 @foreach (var item in Model)
 {
 @if (@item.SatisTemsilcisi == @CurrentSession.Username)
 {
-<option value="@item.kodu">@item.unvan</option>
-}}}
+<option value="@item.kodu">@item.unvan</option>}}}
                         </select>
                     </div>
 
@@ -118,11 +114,10 @@
 
 @section Scripts{
 
-    <script type="text/javascript">
-    var recordtable;
+    <script type="text/javascript">var recordtable;
         var siparisdetailtable;
         var _defaulttablename = "carihesapekstresiQuery";
-        
+
 
         var bastarih = $("#bastarih").val();
         var bistarih = $("#bistarih").val();
@@ -162,12 +157,13 @@
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
                 },
                 "pageLength": 50,
+                "serverSide": true,
                 //"jQueryUI": true,
                 "stateSave": false,
                 "pagingType": "full_numbers",
                 "ajax": {
-                    "url": "/ErpSales/cariekstre",
-                    "type": "POST",
+                    "url": "/ErpSales/GetCARIEKSTRE",
+                    "type": "GET",
                     "contentType": "application/json; charset=utf-8",
                     "data": function (d) {
                         d.dataqueryname = _defaulttablename;
