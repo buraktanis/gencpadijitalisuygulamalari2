@@ -2,14 +2,6 @@
 
 <div class="">
     <div class="">
-        <style>
-            .center {
-                margin: auto;
-                width: 60%;
-                padding: 10px;
-            }
-        </style>
-
         <div class="col-md-12">
 
             <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb" style="padding-top:30px;">
@@ -25,15 +17,27 @@
 
         </div>
 
-        <div class="bg-white  mt-4" >
+
+        <div class="bg-white  mt-4">
             <div class="row bg-white rounded">
 
 
-
-
-                <hr class="container-fluid bg-light pl-5"  />
                 <div class="col-sm-12">
-                    <div class="row" id="sonuc">
+                    <div class="col-md-12" style="text-align:right">
+
+                        <a class="btn btn-outline-success" href="#!" onclick="gizleGoster('sonuc') "><i class=""></i>Ekle</a>
+                    </div>
+
+
+                </div>
+
+
+
+
+
+                <hr class="container-fluid bg-light pl-5"/>
+                <div class="col-sm-12">
+                    <div class="row" id="sonuc" style="display:none;">
 
                         <div class="col-lg-3">
                             <div class="form-group row p-2 ">
@@ -61,7 +65,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-1">
+                        <div class="col-lg-2">
                             <div class="form-group row p-2 ">
                                 <button class="btn btn-secondary mr-1 btn-raised   "><i class="fa fa-times"></i> Temizle</button>
                                 <button class="btn btn-warning mr-1 btn-raised" id="searchDiv"><i class="fa fa-search"></i> Uygula</button>
@@ -85,9 +89,10 @@
                 </div>
                 <div class="col-sm-12">
                     <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
-                        <thead style="background-color:#1f2937; height:42px;">
+                        <thead style="background-color:#1f2937; height:42px; width:100%;">
 
                             <tr style="color:#F1F1F1; ">
+                            
                                 <th class="pt-1 pb-1">Müşteri</th>
                                 <th class="pt-1 pb-1">Temsilci</th>
                                 <th class="pt-1 pb-1">Sipariş Tutarı</th>
@@ -114,9 +119,7 @@
 
 @section Scripts{
 
-    <script type="text/javascript">
-
-        var recordtable;
+    <script type="text/javascript">var recordtable;
         var stock = 0;
         var toplammaliyet = 0;
         var stockdizi = [];
@@ -171,16 +174,16 @@
 
                             var html = ``;
                             if (data == -1) {
-                                html = `<span>Taslak</span>`;
+                                html = `<span class="badge badge-secondary spnEtiket">Taslak</span>`;
                             }
                             if (data == 0) {
-                                html = `<span>Onaya Gönderildi</span>`;
+                                html = `<span class="badge badge-danger badge-pill  spnEtiket">Onaya Gönderildi</span>`;
                             }
                             if (data == 1) {
-                                html = `<span>Logoya Gönderildi</span>`;
+                                html = `<span class="badge badge-info badge-primary   spnEtiket">Logoya Gönderildi</span>`;
                             }
                             if (data == 2) {
-                                html = `<span>Faturalandı</span>`;
+                                html = `<span class="badge badge-info badge-success spnEtiket">Faturalandı</span>`;
                             }
 
 
@@ -452,17 +455,14 @@
                 });
 
             });
-        });
-
-    </script>
+        });</script>
     <script type="text/template" id="formozet">
 
         <div class="row">
-            <div>
-                <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
-                    <thead style="background-color:#1f2937; height:42px;">
-
-                        <tr style="color:#F1F1F1; ">
+            <div class="col-sm-12">
+                <table id="recordtable1" class="table table-sm table-striped table-bordered dataTable">
+                    <thead class="thead-light ">
+                        <tr>
                             <th class="pt-1 pb-1">AD</th>
                             <th class="pt-1 pb-1">KDV</th>
                             <th class="pt-1 pb-1">Fiyat</th>
@@ -508,5 +508,4 @@
 
             </div>
         </div>
-    </script>
-}
+    </script>}

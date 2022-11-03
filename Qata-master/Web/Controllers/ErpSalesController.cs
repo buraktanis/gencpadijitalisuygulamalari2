@@ -350,8 +350,17 @@ GROUP BY [Malzeme Grup Kodu], Yıl, AY, Slsman", yıl, ay).GetDynamicQuery("SCSl
             return View(model);
         }
 
-        public IActionResult cariekstresi(string bastarih,string bistarih)
+        public IActionResult cariekstresi(string bastarih,string bistarih,string satistemsilcisi)
         {
+            if (CurrentSession.Roles.Contains("Yonetim"))
+            {
+                satistemsilcisi = "";
+            }
+            else
+            {
+                satistemsilcisi = string.Format(" and TEMSİLCİ = '{0}' ", CurrentSession.Username);
+            }
+            
             string tarih1 = string.Format(" ' {0} ' ", bastarih);
             string tarih2 = string.Format(" ' {0} ' ", bistarih);
 
@@ -366,7 +375,7 @@ GROUP BY [Malzeme Grup Kodu], Yıl, AY, Slsman", yıl, ay).GetDynamicQuery("SCSl
       ,[BAKIYE]
       ,[TEMSİLCİ]
       
-  FROM [tiger].[dbo].[ARY_XXX_CARI_EKSTRE] where TARIH between {0} and {1}", tarih1,tarih2).GetDynamicQuery("SCSlogo");
+  FROM [tiger].[dbo].[ARY_XXX_CARI_EKSTRE] where (TARIH between {0} and {1}) {2}", tarih1,tarih2,satistemsilcisi).GetDynamicQuery("SCSlogo");
 
             return View(model);
 

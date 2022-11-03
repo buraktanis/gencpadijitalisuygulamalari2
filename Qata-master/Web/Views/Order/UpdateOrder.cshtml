@@ -43,7 +43,7 @@
                                 <div class="col-md-3">
                                     <label asp-for="Order.CustomerId" class="text-end control-label col-form-label">Müşteri*</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <select class="form-control valid" data-val="true" data-val-required="The CustomerId field is required." id="Order_CustomerId" name="Order.CustomerId" aria-describedby="Order_CustomerId-error" aria-invalid="false">
                                         <option data-logoid="@Model.customer.LogoId" value="@Model.customer.Id">@Model.customer.Name</option>
                                     </select>
@@ -187,7 +187,7 @@
                 <h3> Ürün/Malzeme Listesi  </h3>
 
             </div>
-            <div class="col-md-6 float-right pt-4 p-2 ">
+            <div class="col-md-6 float-right pt-4 p-2 " style="text-align:right">
                 @if (Model.Order.Status == -1 || Model.Order.Status == 3 || (Model.Order.Status == 0 && CurrentSession.Roles.Contains("Yonetim")))
                 {
                     <a href="#!" onclick="gizleGoster('sonuc') " class="border  p-2 mr-1  border-success btn-outline-success float-right">Malzeme Ekle<i class="fas fa-plus "></i></a>
@@ -307,7 +307,7 @@
 
 
         </div>
-        <div class="col-sm-12 ">
+        <div class="row ">
 
 
             <div class="col-md-3 float-right pt-4 p-2 ">
@@ -323,7 +323,7 @@
                 }
 
             </div>
-            <div class="col-md-8 pt-4 p-2">
+            <div class="col-md-8 pt-4 p-2" style="text-align:right">
 
                 @if (Model.Order.Status == -1)
                 {

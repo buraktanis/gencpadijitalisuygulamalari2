@@ -87,7 +87,8 @@
 
                 <li role="separator" class="dropdown-divider  border-gray-700"></li>
 
-
+                @if (CurrentSession.Roles.Contains("Yonetim"))
+                {
                 <li class="nav-item">
 
                     <span class="nav-link  collapsed  d-flex justify-content-between align-items-center"
@@ -303,8 +304,10 @@
                     </div>
 
                 </li>
-
                 <li role="separator" class="dropdown-divider  border-gray-700"></li>
+                }
+
+                
 
                 <li class="nav-item">
 
@@ -393,7 +396,7 @@
                          role="list" id="submenu-sales" aria-expanded="false">
                         <ul class="flex-column nav">
                             <li class="nav-item">
-                                <a href="/ErpSales/gtstemsilci">
+                                <a href="/GTS/gtstemsilci">
                                     <span>
 
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
