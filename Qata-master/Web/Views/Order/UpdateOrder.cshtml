@@ -201,12 +201,13 @@
         <hr class="container-fluid bg-light pl-5">
         <div class="col-sm-12">
             <div class="row" id="sonuc" style="display:none;">
-
+                <div class="card">
                 <div class="col-sm-12">
-                    <table id="recordtable" class="table table-sm table-striped table-bordered dataTable">
-                        <thead class="thead-light ">
-                            <tr>
-                                <th class="pt-1 pb-1">AD</th>
+                    <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
+                        <thead style="background-color:#1f2937; height:42px;">
+                            <tr style="color:#F1F1F1; ">
+
+<th class="pt-1 pb-1">AD</th>
                                 <th class="pt-1 pb-1">KOD</th>
                                 @if (CurrentSession.Roles.Contains("Yonetim"))
                                 {
@@ -219,41 +220,42 @@
                                 <th class="pt-1 pb-1">Miktar</th>
                                 <th class="pt-1 pb-1">Ekle</th>
 
-                            </tr>
+                            </>
                         </thead>
                         <tbody>
                             @foreach (var item in Model.STOK_DURUM)
                             {
-                            <tr>
-                                <td>@item.AD</td>
-                                <td class="text-center">@item.Kod</td>
-                                @if (CurrentSession.Roles.Contains("Yonetim"))
-                                {
-                                    <td class="text-center">@item.STOK</td>
-                                    <td class="text-center">@item.ONAYLI_SIP</td>
-                                    <td class="text-center"> @item.Bekleyen_STOK</td>
-                                }
-                                <td class="text-danger text-center "><h4>@(item.STOK - item.Bekleyen_STOK- item.ONAYLI_SIP)</h4></td>
-                                <td class="text-center"><input class="text-center" value="0" id="p-@item.LOGICALREF" /></td>
-                                <td class="text-center">
-                                <input type="number" class="text-center stokinput" min="1" stok-count="@item.STOK" value="0" id="m-@item.LOGICALREF" max="@(item.STOK - item.Bekleyen_STOK- item.ONAYLI_SIP)" /></td>
-                                @if (item.STOK <= 0)
-                                {
-                                    <td class="text-center"><p class="text-danger">Stokta ürün yok</p></td>
-                                }
-                                else
-                                {
-                                    <td class="text-center"> <a data-id='@item.LOGICALREF' class='btn  btn-sm text-white  addOrderItem'><i class="fa  fa-plus border p-2 mr-1 rounded-circle border-primary  btn-outline-primary float-right"></i></a></td>
+                                <tr>
+                                    <td>@item.AD</td>
+                                    <td class="text-center">@item.Kod</td>
+                                    @if (CurrentSession.Roles.Contains("Yonetim"))
+                                    {
+                                        <td class="text-center">@item.STOK</td>
+                                        <td class="text-center">@item.ONAYLI_SIP</td>
+                                        <td class="text-center"> @item.Bekleyen_STOK</td>
+                                    }
+                                    <td class="text-danger text-center "><h4>@(item.STOK - item.Bekleyen_STOK- item.ONAYLI_SIP)</h4></td>
+                                    <td class="text-center"><input class="text-center" value="0" id="p-@item.LOGICALREF" /></td>
+                                    <td class="text-center">
+                                        <input type="number" class="text-center stokinput" min="1" stok-count="@item.STOK" value="0" id="m-@item.LOGICALREF" max="@(item.STOK - item.Bekleyen_STOK- item.ONAYLI_SIP)" />
+                                    </td>
+                                    @if (item.STOK <= 0)
+                                    {
+                                        <td class="text-center"><p class="text-danger">Stokta ürün yok</p></td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center"> <a data-id='@item.LOGICALREF' class='btn  btn-sm text-white  addOrderItem'><i class="fa  fa-plus border p-2 mr-1 rounded-circle border-primary  btn-outline-primary float-right"></i></a></td>
 
-                                }
-                            </tr>
+                                    }
+                                </tr>
                             }
 
 
                         </tbody>
                     </table>
 
-                </div>
+                </div> </div>
 
 
             </div>
@@ -482,6 +484,9 @@
         var isadmin = "@CurrentSession.Roles.Contains("Yonetim")";
         $(function () {
             $('#recordtable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                },
                 responsive: true,
                 pageLength: 10,
                 paging: true,

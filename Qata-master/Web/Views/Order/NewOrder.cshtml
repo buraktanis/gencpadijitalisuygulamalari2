@@ -56,9 +56,12 @@
                             <div class="form-group row" id="CustomerConsignment">
                                 <div class="col-sm-3">
                                     <label class="text-end control-label col-form-label">Şubeler</label>
+
                                 </div>
                                 <div class="col-sm-9">
                                     @Html.DropDownListFor(m => m.Order.CustomerConsignmentId, new List<SelectListItem> { }, new { @class = "form-control" })
+                                    <span asp-validation-for="Order.CustomerConsignmentId" class="text-danger"></span>
+
                                 </div>
                                 <span class="text-danger"></span>
                             </div>
@@ -68,6 +71,7 @@
                                 </div>
                                 <div class="col-sm-9">
                                     @Html.DropDownListFor(m => m.Order.DeliveryType, (List<SelectListItem>)Model.DeliveryType, new { @class = "form-control" })
+                                    <span asp-validation-for="Order.DeliveryType" class="text-danger"></span>
 
                                 </div>
                                 <span class="text-danger"></span>
@@ -125,6 +129,8 @@
                                 </div>
                                 <div class="col-sm-9">
                                     @Html.DropDownListFor(m => m.Order.WareHouse, (List<SelectListItem>)Model.WareHouses, new { @class = "form-control" })
+                                    <span asp-validation-for="Order.WareHouse" class="text-danger"></span>
+
                                 </div>
                                 <span class="text-danger"></span>
                             </div>
@@ -135,6 +141,8 @@
                                 </div>
                                 <div class="col-sm-9  ">
                                     @Html.DropDownListFor(m => m.Order.TypeOfPayment, (List<SelectListItem>)Model.PaymentTypes, new { @class = "form-control" })
+                                    <span asp-validation-for="Order.TypeOfPayment" class="text-danger"></span>
+
                                 </div>
                                 <span class="text-danger"></span>
                             </div>
