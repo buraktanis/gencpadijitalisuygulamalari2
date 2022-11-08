@@ -21,13 +21,20 @@
         </div>
         <div class="bg-white  mt-4">
             <div class="row bg-white rounded">
+                <div class="form-group form-check form-switch col-md-12 mt-3" style="text-align:right; padding-right:50px;">
 
+                    <label for="lessthanzero">
 
-                <hr class="container-fluid bg-light pl-5"  />
+                        <input class="form-check-input" id="lessthanzero" type="checkbox">
+                        Stoklu Ürünleri Getir
+                    </label>
+                </div>
+
+                <hr class="container-fluid bg-light pl-5" />
                 <div class="col-sm-12" id="sonuc" style="display:none;">
 
                 </div>
-                <div class="col-sm-12">
+                <div class="col-sm-12 lessthanzerotable">
                     <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
                         <thead style="background-color:#1f2937; height:42px;">
 
@@ -41,8 +48,9 @@
                                     <th class="pt-1 pb-1"> Stok </th>
                                     <th class="pt-1 pb-1"> Bekleyen Sipariş(Logo) </th>
                                     <th class="pt-1 pb-1"> Bekleyen Sipariş(Crm) </th>
-}
-                                <th class="pt-1 pb-1"> Filli Stok </th>
+                                }
+                                <th class="pt-1 pb-1"> Fiili Stok </th>
+
 
                             </tr>
                         </thead>
@@ -59,11 +67,60 @@
                                         <td>@item.STOK</td>
                                         <td>@item.ONAYLI_SIP</td>
                                         <td>@item.Bekleyen_STOK</td>
-}
+                                    }
                                     <td class="text-danger "><h4>@(item.STOK - item.Bekleyen_STOK- item.ONAYLI_SIP)</h4></td>
                                 </tr>
-}
+                            }
 
+
+                        </tbody>
+                    </table>
+
+
+
+
+                </div>
+                <div class="col-sm-12 lessthanzerotable2">
+                    <table id="recordtable2" class="table-bordered display dataTable " style="width:100%; font-size:12px;">
+                        <thead style="background-color:#1f2937; height:42px;">
+
+                            <tr style="color:#F1F1F1; ">
+                                <th class="pt-1 pb-1">Mal Kodu</th>
+                                <th class="pt-1 pb-1"> Mal Adı </th>
+                                <th class="pt-1 pb-1">MarkaKodu</th>
+                                <th class="pt-1 pb-1"> MalzemeGrupKodu</th>
+                                @if (CurrentSession.Roles.Contains("Yonetim"))
+                                {
+                                    <th class="pt-1 pb-1"> Stok </th>
+                                    <th class="pt-1 pb-1"> Bekleyen Sipariş(Logo) </th>
+                                    <th class="pt-1 pb-1"> Bekleyen Sipariş(Crm) </th>
+                                }
+                                <th class="pt-1 pb-1"> Fiili Stok </th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                @if ((item.STOK - item.Bekleyen_STOK - item.ONAYLI_SIP) > 0)
+                                {
+                                    <tr>
+                                        <td>@item.Kod</td>
+                                        <td>@item.AD</td>
+                                        <td>@item.MarkaKodu</td>
+                                        <td>@item.MalzemeGrupKodu</td>
+                                        @if (CurrentSession.Roles.Contains("Yonetim"))
+                                        {
+                                            <td>@item.STOK</td>
+                                            <td>@item.ONAYLI_SIP</td>
+                                            <td>@item.Bekleyen_STOK</td>
+                                        }
+                                        <td class="text-danger "><h4>@(item.STOK - item.Bekleyen_STOK- item.ONAYLI_SIP)</h4></td>
+                                    </tr>
+                                }
+                            }
 
                         </tbody>
                     </table>
@@ -82,10 +139,48 @@
 
         var tip;
 
+        $(".lessthanzerotable2").hide();
+
 
         $(function () {
+            $(".lessthanzero").hide();
+            $('#lessthanzero').change(function () {
+                if ($(this).is(':checked')) {
+                    $(".lessthanzerotable2").show();
+                    $(".lessthanzerotable").hide();
+
+                }
+                else {
+                    $(".lessthanzerotable").show();
+                    $(".lessthanzerotable2").hide();
+
+                }
+
+            });
 
             $('#recordtable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                },
+
+                responsive: true,
+                pageLength: 10,
+                paging: true,
+                searching: true,
+                stateSave: true,
+                buttons: [{
+                    extend: 'excel',
+                    exportOptions: {
+                        modifier: {
+                            page: 'all',
+                            search: 'none'
+                        }
+                    },
+                    //the remaining buttons here
+                }],
+            });
+
+            $('#recordtable2').DataTable({
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
                 },

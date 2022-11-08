@@ -87,6 +87,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12">
+                    <div class="table-responsive">
                     <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
                         <thead style="background-color:#1f2937; height:42px;">
 
@@ -104,6 +105,7 @@
                         <tbody>
                         </tbody>
                     </table>
+                    </div>
 
 
 
@@ -149,7 +151,7 @@
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
                 },
-                "responsive": true,
+                "responsive": false,
                 "serverSide": true,
                 "searching": true,
                 "lengthChange": false,
@@ -201,13 +203,13 @@
                                 html = `<span>Taslak</span>`;
                             }
                             if (data == 0) {
-                                html = `<span>Onaya Gönderildi</span>`;
+                                html = `<span style="background-color:red;">Onaya Gönderildi</span>`;
                             }
                             if (data ==1) {
-                                html = `<span>Logoya Gönderildi</span>`;
+                                html = `<span style="background-color:#66ff00;">Logoya Gönderildi</span>`;
                             }
                             if (data == 2) {
-                                html = `<span>Faturalandı</span>`;
+                                html = `<span style="background-color:yellow;">Faturalandı</span>`;
                             }
                             if (data == 3) {
                                 html = `<span>Red Edildi</span>`;

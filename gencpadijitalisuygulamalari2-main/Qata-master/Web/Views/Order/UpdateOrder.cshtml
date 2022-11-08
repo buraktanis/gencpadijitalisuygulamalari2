@@ -187,7 +187,15 @@
                 <h3> Ürün/Malzeme Listesi  </h3>
 
             </div>
-            <div class="col-md-6 float-right pt-4 p-2 " style="text-align:right">
+            <div class="form-group form-check form-switch col-md-3 mt-4" style="text-align:right; ">
+
+                <label for="lessthanzero">
+
+                    <input class="form-check-input" id="lessthanzero" type="checkbox">
+                    Stoklu Ürünleri Getir
+                </label>
+            </div>
+            <div class="col-md-3 float-right pt-4 p-2 " style="text-align:right">
                 @if (Model.Order.Status == -1 || Model.Order.Status == 3 || (Model.Order.Status == 0 && CurrentSession.Roles.Contains("Yonetim")))
                 {
                     <a href="#!" onclick="gizleGoster('sonuc') " class="border  p-2 mr-1  border-success btn-outline-success float-right">Malzeme Ekle<i class="fas fa-plus "></i></a>
@@ -199,63 +207,145 @@
         </div>
 
         <hr class="container-fluid bg-light pl-5">
-        <div class="col-sm-12">
+        <div class="col-sm-12 lessthanzerotable">
             <div class="row" id="sonuc" style="display:none;">
                 <div class="card">
-                <div class="col-sm-12">
-                    <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
-                        <thead style="background-color:#1f2937; height:42px;">
-                            <tr style="color:#F1F1F1; ">
+                    <div class="col-sm-12">
+                        <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
+                            <thead style="background-color:#1f2937; height:42px;">
+                                <tr style="color:#F1F1F1; ">
 
-<th class="pt-1 pb-1">AD</th>
-                                <th class="pt-1 pb-1">KOD</th>
-                                @if (CurrentSession.Roles.Contains("Yonetim"))
-                                {
-                                    <th class="pt-1 pb-1"> Stok </th>
-                                    <th class="pt-1 pb-1"> Bekleyen Sipariş(Logo) </th>
-                                    <th class="pt-1 pb-1"> Bekleyen Sipariş(Crm) </th>
-                                }
-                                <th class="pt-1 pb-1"> Filli Stok </th>
-                                <th class="pt-1 pb-1">Fiyat</th>
-                                <th class="pt-1 pb-1">Miktar</th>
-                                <th class="pt-1 pb-1">Ekle</th>
-
-                            </>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.STOK_DURUM)
-                            {
-                                <tr>
-                                    <td>@item.AD</td>
-                                    <td class="text-center">@item.Kod</td>
+                                    <th class="pt-1 pb-1">AD</th>
+                                    <th class="pt-1 pb-1">KOD</th>
                                     @if (CurrentSession.Roles.Contains("Yonetim"))
                                     {
-                                        <td class="text-center">@item.STOK</td>
-                                        <td class="text-center">@item.ONAYLI_SIP</td>
-                                        <td class="text-center"> @item.Bekleyen_STOK</td>
+                                        <th class="pt-1 pb-1"> Stok </th>
+                                        <th class="pt-1 pb-1"> Bekleyen Sipariş(Logo) </th>
+                                        <th class="pt-1 pb-1"> Bekleyen Sipariş(Crm) </th>
                                     }
-                                    <td class="text-danger text-center "><h4>@(item.STOK - item.Bekleyen_STOK- item.ONAYLI_SIP)</h4></td>
-                                    <td class="text-center"><input class="text-center" value="0" id="p-@item.LOGICALREF" /></td>
-                                    <td class="text-center">
-                                        <input type="number" class="text-center stokinput" min="1" stok-count="@item.STOK" value="0" id="m-@item.LOGICALREF" max="@(item.STOK - item.Bekleyen_STOK- item.ONAYLI_SIP)" />
-                                    </td>
-                                    @if (item.STOK <= 0)
+                                    <th class="pt-1 pb-1"> Filli Stok </th>
+                                    <th class="pt-1 pb-1">Fiyat</th>
+                                    <th class="pt-1 pb-1">Miktar</th>
+                                    <th class="pt-1 pb-1">Ekle</th>
+
+                                    </>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.STOK_DURUM)
+                                {
+                                    <tr>
+                                        <td>@item.AD</td>
+                                        <td class="text-center">@item.Kod</td>
+                                        @if (CurrentSession.Roles.Contains("Yonetim"))
+                                        {
+                                            <td class="text-center">@item.STOK</td>
+                                            <td class="text-center">@item.ONAYLI_SIP</td>
+                                            <td class="text-center"> @item.Bekleyen_STOK</td>
+                                        }
+                                        <td class="text-danger text-center "><h4>@(item.STOK - item.Bekleyen_STOK- item.ONAYLI_SIP)</h4></td>
+                                        <td class="text-center"><input class="text-center" value="0" id="p-@item.LOGICALREF" /></td>
+                                        <td class="text-center">
+                                            <input type="number" class="text-center stokinput" min="1" stok-count="@item.STOK" value="0" id="m-@item.LOGICALREF" max="@(item.STOK - item.Bekleyen_STOK- item.ONAYLI_SIP)" />
+                                        </td>
+                                        @if ((item.STOK - item.Bekleyen_STOK - item.ONAYLI_SIP) <= 0)
+                                        {
+                                            <td class="text-center"><p class="text-danger">Stokta ürün yok</p></td>
+                                        }
+                                        else
+                                        {
+                                            <td class="text-center">
+                                                <a data-id='@item.LOGICALREF' class='btn addOrderItem'>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                                    </svg>
+                                                </a>
+                                            </td>
+
+                                        }
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+        <div class="col-sm-12 lessthanzerotable2">
+            <div class="row" id="sonuc">
+                <div class="card">
+                    <div class="col-sm-12">
+                        <table id="recordtablestok" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
+                            <thead style="background-color:#1f2937; height:42px;">
+                                <tr style="color:#F1F1F1; ">
+
+                                    <th class="pt-1 pb-1">AD</th>
+                                    <th class="pt-1 pb-1">KOD</th>
+                                    @if (CurrentSession.Roles.Contains("Yonetim"))
                                     {
-                                        <td class="text-center"><p class="text-danger">Stokta ürün yok</p></td>
+                                        <th class="pt-1 pb-1"> Stok </th>
+                                        <th class="pt-1 pb-1"> Bekleyen Sipariş(Logo) </th>
+                                        <th class="pt-1 pb-1"> Bekleyen Sipariş(Crm) </th>
                                     }
-                                    else
+                                    <th class="pt-1 pb-1"> Fiili Stok </th>
+                                    <th class="pt-1 pb-1">Fiyat</th>
+                                    <th class="pt-1 pb-1">Miktar</th>
+                                    <th class="pt-1 pb-1">Ekle</th>
+
+                                    </>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.STOK_DURUM)
+                                {
+                                    @if ((item.STOK - item.Bekleyen_STOK - item.ONAYLI_SIP) > 0)
                                     {
-                                        <td class="text-center"> <a data-id='@item.LOGICALREF' class='btn  btn-sm text-white  addOrderItem'><i class="fa  fa-plus border p-2 mr-1 rounded-circle border-primary  btn-outline-primary float-right"></i></a></td>
+                                    <tr>
+                                        <td>@item.AD</td>
+                                        <td class="text-center">@item.Kod</td>
+                                        @if (CurrentSession.Roles.Contains("Yonetim"))
+                                        {
+                                            <td class="text-center">@item.STOK</td>
+                                            <td class="text-center">@item.ONAYLI_SIP</td>
+                                            <td class="text-center"> @item.Bekleyen_STOK</td>
+                                        }
+                                        <td class="text-danger text-center "><h4>@(item.STOK - item.Bekleyen_STOK - item.ONAYLI_SIP)</h4></td>
+                                        <td class="text-center"><input class="text-center" value="0" id="p-@item.LOGICALREF" /></td>
+                                        <td class="text-center">
+                                            <input type="number" class="text-center stokinput" min="1" stok-count="@item.STOK" value="0" id="m-@item.LOGICALREF" max="@(item.STOK - item.Bekleyen_STOK - item.ONAYLI_SIP)" />
+                                        </td>
+                                        @if ((item.STOK - item.Bekleyen_STOK - item.ONAYLI_SIP) <= 0)
+                                        {
+                                            <td class="text-center"><p class="text-danger">Stokta ürün yok</p></td>
+                                        }
+                                        else
+                                        {
+                                            <td class="text-center">
+                                                <a data-id='@item.LOGICALREF' class='btn addOrderItem'>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                                    </svg>
+                                                </a>
+                                            </td>
 
-                                    }
-                                </tr>
-                            }
+                                        }
+                                    </tr> }
+                                }
 
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
 
-                </div> </div>
+                    </div>
+                </div>
 
 
             </div>
@@ -287,10 +377,10 @@
         <div class="col-md-3">
             <table class="table table-sm table-striped table-bordered dataTable">
                 @*<tr>
-                        <th></th>
-                        <th></th>
+                    <th></th>
+                    <th></th>
 
-                    </tr>*@
+                </tr>*@
 
                 <tr>
                     <td class="text-center"><h4>Ara Toplam</h4></td>
@@ -482,8 +572,38 @@
         var toplamtutarKdv = 0;
         var toplamtutarKdvDizi = []
         var isadmin = "@CurrentSession.Roles.Contains("Yonetim")";
+        $(".lessthanzerotable2").hide();
+
         $(function () {
+            
+
+            $(".lessthanzero").hide();
+            $('#lessthanzero').change(function () {
+                if ($(this).is(':checked')) {
+                    $(".lessthanzerotable2").show();
+                    $(".lessthanzerotable").hide();
+
+                }
+                else {
+                    $(".lessthanzerotable").show();
+                    $(".lessthanzerotable2").hide();
+
+                }
+
+            });
+
             $('#recordtable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                },
+                responsive: true,
+                pageLength: 10,
+                paging: true,
+                searching: true,
+                stateSave: true,
+            });
+
+            $('#recordtablestok').DataTable({
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
                 },

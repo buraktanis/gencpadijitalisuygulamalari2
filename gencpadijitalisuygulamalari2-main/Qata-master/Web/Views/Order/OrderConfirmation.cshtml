@@ -92,7 +92,7 @@
                         <thead style="background-color:#1f2937; height:42px; width:100%;">
 
                             <tr style="color:#F1F1F1; ">
-                            
+                                
                                 <th class="pt-1 pb-1">Müşteri</th>
                                 <th class="pt-1 pb-1">Temsilci</th>
                                 <th class="pt-1 pb-1">Sipariş Tutarı</th>
@@ -196,10 +196,11 @@
                             var html = ""
 
                                 + "<a data-id='" + data + "' class='btn btn-warning   btn-sm text-black  detail' href='/Order/UpdateOrder/" + data + "'>Güncelle</a>"
-                                + "<a data-logoid='" + data + "' class='btn btn-info   btn-sm text-white  ozet' >Özet</a>"
+                                + "<a data-name='" + data + "' class='btn btn-info   btn-sm text-white  ozet' >Özet</a>"
                                 + "<a  data-status='3' data-id='" + data + "' class='btn btn-danger  btn-sm text-white  ret'>Red Et</a>"
                                 + "<a data-status='1' data-id='" + data + "' class='btn btn-info  btn-sm text-white  onayla'>Onayla</a>"
                                 + "<a data-id='" + data + "' class='btn btn-danger  btn-sm text-white  delete'>Sil</a>";
+
 
                             return html;
                         }
@@ -296,6 +297,7 @@
                 });
 
             });
+            
 
             $(".dataTable tbody").on("click", "a.ret", function () {
                 var id = $(this).attr("data-id");

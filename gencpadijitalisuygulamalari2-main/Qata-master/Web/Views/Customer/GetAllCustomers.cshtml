@@ -27,9 +27,8 @@
                 <div class="col-sm-12" style="text-align:right">
                     
                     <div class="col-md-12 float-right pt-4 p-2 ">
-                        <a class="btn btn-outline-info" href="/Customer/AddCustomer"><i class=""></i>Arama</a>
+                        <a class="btn btn-outline-info" href="/Customer/AddCustomer"><i class=""></i>Ekle</a>
 
-                        <a class="btn btn-outline-success" href="#!" onclick="gizleGoster('sonuc') "><i class=""></i>Ekle</a>
                     </div>
 
 
@@ -37,7 +36,7 @@
 
                 <hr class="container-fluid bg-light pl-5" @*style="width:95%;"*@ />
                 <div class="col-sm-12">
-                    <div class="row" id="sonuc" style="display:none;">
+                    <div class="row" id="sonuc" >
 
                         <div class="col-md-2">
                             <div class="form-group row p-2 ">
@@ -119,7 +118,7 @@
                         <div class="col-lg-12 row">
                             
                             <div class="col-md-4">
-                                <div class="form-group row">
+                                <div class="row">
                                     <div class="col-sm-12">
                                         <label class="text-end control-label col-form-label">Arama</label>
                                     </div>
@@ -129,7 +128,7 @@
 
                                 </div>
                             </div>
-                            <div class="form-group 4">
+                            <div class="col-md-4">
                                 @*<button class="btn btn-secondary mr-1 btn-raised   "><i class="fa fa-times"></i> Temizle</button>*@
                                 <button class="btn btn-warning mr-1 btn-raised" id="searchDiv" style="margin-top:35px"><i class="fa fa-search"></i> Uygula</button>
                                 <!--Buton Hover Effect-->
@@ -151,43 +150,45 @@
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
-                        <thead style="background-color:#1f2937; height:42px;">
+                    <div class="table-responsive">
 
-                            <tr style="color:#F1F1F1; ">
-                                <th class="pt-1 pb-1">
-                                    S.Sipariş Tarihi
-                                </th>
-                                <th class="pt-1 pb-1">
-                                    S.Not
-                                </th>
-                                <th class="pt-1 pb-1">
-                                    S.Arama Tarihi
-                                </th>
-                                <th class="pt-1 pb-1">Bayi Tipi</th>
-                                <th class="pt-1 pb-1">Müşteri Adı</th>
-                                <th class="pt-1 pb-1">Temsilci</th>
-                                <th class="pt-1 pb-1">Bölge</th>
-                                <th class="pt-1 pb-1">İl</th>
-                                <th class="pt-1 pb-1">İlçe</th>
-                                <th class="pt-1 pb-1">CariKodu</th>
-                                <th class="pt-1 pb-1">Telefon Numarası</th>
-                                <th class="pt-1 pb-1">
-                                    Müşteri Notu
-                                </th>
-                                <th class="pt-1 pb-1">Onay Durum</th>
-                                <th class="pt-1 pb-1"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                        <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
+                            <thead style="background-color:#1f2937; height:42px;">
 
+                                <tr style="color:#F1F1F1; ">
+                                    <th class="pt-1 pb-1">
+                                        S.Sipariş Tarihi
+                                    </th>
+                                    <th class="pt-1 pb-1">
+                                        S.Not
+                                    </th>
+                                    <th class="pt-1 pb-1">
+                                        S.Arama Tarihi
+                                    </th>
+                                    <th class="pt-1 pb-1">Bayi Tipi</th>
+                                    <th class="pt-1 pb-1">Müşteri Adı</th>
 
+                                    <th class="pt-1 pb-1">Temsilci</th>
+
+                                    <th class="pt-1 pb-1">Bölge</th>
+                                    <th class="pt-1 pb-1">CariKodu</th>
+                                    <th class="pt-1 pb-1">Telefon Numarası</th>
+                                    <th class="pt-1 pb-1">
+
+                                        Müşteri Notu
+                                    </th>
+                                    <th class="pt-1 pb-1"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+                        </div>
+
+                    </div>
 
                 </div>
-
-            </div>
         </div>
     </div>
 </div>
@@ -225,7 +226,7 @@
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
                 },
-                "responsive": true,
+                "responsive": false,
                 "serverSide": true,
                 "searching": false,
                 "lengthChange": true,
@@ -280,19 +281,15 @@
                     },
                     {
                         "data": "Name"
-                    },
+                    }, 
                     {
                         "data": "Slsman"
-                    },
+                    }, 
                     {
                         "data": "Region"
                     },
-                    {
-                        "data": "City"
-                    },
-                    {
-                        "data": "Town"
-                    },
+                    
+                    
                     {
                         "data": "CariKodu", "visible": false
                     },
@@ -309,28 +306,12 @@
                         "data": "LogoId", className: "text-center", "render": function (data, type, row) {
                             var html = ""
 
-                                + "<a data-logoid='" + data + "' class='btn btn-info   btn-sm text-white  not' >Notlar</a>"
+                                + "<a data-logoid='" + data + "' class='btn btn-secondary not' >.</a>"
 
                             return html;
                         }
                     },
-                    {
-                        "data": "ConfirmationType", className: "text-center", "render": function (data, type, row) {
-                            var html = "";
-                            if (data == 0) {
-                                html = `<span class="badge badge badge-danger">Onay Bekleniyor</span>`;
-
-                            }
-
-                            if (data == 1) {
-                                html = ` <span class="success">Onayladı</span>`;
-                            }
-
-
-                            return html;
-                        }
-
-                    },
+                    
                     {
                         "data": "Id", className: "text-center", "render": function (data, type, row) {
                             var html = ""
@@ -344,7 +325,7 @@
                             html = html + `<div class="btn-group">
                                   
                                   <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
-                                    <span class="sr-only">Daha</span>
+                                    <span class="sr-only">-></span>
                                   </button>
                                   <div class="dropdown-menu">
                                     <a class="dropdown-item orders" data-id='${data}' href="#">Siparişler</a>
@@ -846,6 +827,7 @@
                 </div>
             </div>
             <div class="col-sm-12">
+
                 <table id="recordtable3" class="table table-sm table-striped table-bordered dataTable">
                     <thead class="thead-light ">
                         <tr>
