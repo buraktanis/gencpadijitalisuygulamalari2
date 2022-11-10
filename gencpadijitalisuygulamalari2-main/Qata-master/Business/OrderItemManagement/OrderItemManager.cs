@@ -20,6 +20,8 @@ namespace Business.OrderItemManagement
             _orderItemDal = orderItemDal;
         }
 
+        
+
         public DataTablesObjectResult GetOrderItemByOrderIdDatatables(DatatablesObject requestobj)
         {
             string query = @" SELECT *  FROM OrderItems   ";

@@ -9,7 +9,7 @@
 
             <li class="breadcrumb-item active" aria-current="page ">
                 <h3>
-                    Sipariş oluştur
+                    Sipariş Oluştur
                 </h3>
             </li>
         </ol>
@@ -88,10 +88,9 @@
 
                             </div>
                             <div class="form-group row">
-                                <div class="col-sm-3">
-                                    <label class="text-end control-label col-form-label">Tarih</label>
-                                    <h3 class="text-end control-label col-form-label">@DateTime.Now</h3>
-                                </div>
+
+                                <label class="text-end control-label col-form-label mt-2">Tarih: @DateTime.Now</label>
+
                                 <div class="col-sm-6">
 
                                 </div>
@@ -239,6 +238,9 @@
                         //"jQueryUI": true,
                         "stateSave": false,
                         "pagingType": "full_numbers",
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                        },
                         "ajax": {
                             "url": "/Customer/GetCustomerDatatables",
                             "type": "POST",
@@ -342,7 +344,7 @@
                         <tr>
                             <th class="pt-1 pb-1">İl</th>
                             <th class="pt-1 pb-1">İlçe</th>
-                            <th class="pt-1 pb-1">Adress</th>
+                            <th class="pt-1 pb-1">Adres</th>
                             <th class="pt-1 pb-1"></th>
                         </tr>
                     </thead>

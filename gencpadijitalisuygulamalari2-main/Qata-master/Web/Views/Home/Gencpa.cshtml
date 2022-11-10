@@ -1,21 +1,18 @@
 ﻿@model Entities.Concrete.Setting
 
-<div class="page-breadcrumb">
-    <div class="row">
-        <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">Anasayfa</h4>
-            <div class="ms-auto text-end">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#"></a></li>
-                        <li class="breadcrumb-item active" aria-current="page">
-                            Gençpa
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
+<div class="col-md-12">
+
+    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb" style="padding-top:30px;">
+        <ol class="breadcrumb ">
+
+            <li class="breadcrumb-item active" aria-current="page ">
+                <h3>
+IBAN Bilgileri
+                </h3>
+            </li>
+        </ol>
+    </nav>
+
 </div>
 <!-- ============================================================== -->
 <!-- End Bread crumb and right sidebar toggle -->
@@ -24,30 +21,30 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 
-<div class="bg-white  mt-4" style="margin-left:2%;margin-right:2%;">
+<div class="bg-white  mt-4" style="">
     <div class="row bg-white rounded">
         <div class="col-sm-12 row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <h4  class="control-label">Şirket Unvanı : @Model.Name</h4>
+                    <h6  class="control-label">Şirket Unvanı : @Model.Name</h6>
 
                 </div>
             </div> 
             <div class="col-md-12">
                 <div class="form-group">
-                    <h4 class="control-label">Adres : @Model.Address</h4>
+                    <h6 class="control-label">Adres : @Model.Address</h6>
 
                 </div>
             </div> 
             <div class="col-md-12">
                 <div class="form-group">
-                    <h4 class="control-label">Depo Yetkilisi/Telefonu : @Model.WarehouseOfficer</h4>
+                    <h6 class="control-label">Depo Yetkilisi/Telefonu : @Model.WarehouseOfficer</h6>
 
                 </div>
             </div>   
             <div class="col-md-12">
                 <div class="form-group">
-                    <h4 class="control-label">Depo Adresi : @Model.WarehouseAddress</h4>
+                    <h6 class="control-label">Depo Adresi : @Model.WarehouseAddress</h6>
 
                 </div>
             </div>
@@ -61,8 +58,8 @@
                 Banka Bilgilerimiz IBAN
             </h6>   
             <table id="recordtable1" class="table table-bordered pt-0 pb-0">
-                <thead class="thead-light">
-                    <tr>
+                <thead style="background-color:#1f2937; height:42px;">
+                    <tr style="color:#F1F1F1; ">
                         <th class="pt-1 pb-1">İsim</th>
                         <th class="pt-1 pb-1">Açıklama</th>
                     </tr>
@@ -83,8 +80,8 @@
                 Kargo Bilgileri
             </h6>
             <table id="recordtable" class="table table-bordered pt-0 pb-0">
-                <thead class="thead-light">
-                    <tr>
+                <thead style="background-color:#1f2937; height:42px;">
+                    <tr style="color:#F1F1F1; ">
                         <th class="pt-1 pb-1">İsim</th>
                         <th class="pt-1 pb-1">Açıklama</th>
                     </tr>
@@ -135,6 +132,10 @@
                     //"jQueryUI": true,
                     "stateSave": false,
                     "pagingType": "full_numbers",
+                    "bInfo": false,
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                    },
                     "ajax": {
                         "url": "/Configure/GetConfigurationDatatables",
                         "type": "POST",
@@ -185,6 +186,10 @@
                     //"jQueryUI": true,
                     "stateSave": false,
                     "pagingType": "full_numbers",
+                    "bInfo": false,
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                    },
                     "ajax": {
                         "url": "/Configure/GetConfigurationDatatables",
                         "type": "POST",

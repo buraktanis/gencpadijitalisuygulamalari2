@@ -21,7 +21,7 @@
     </div>
     <div class="">
 
-        <div class="bg-white  mt-4" >
+        <div class="bg-white  mt-4 mb-5" >
             <div class="row bg-white rounded">
 
                 <div class="col-sm-12" style="text-align:right">
@@ -130,7 +130,7 @@
                             </div>
                             <div class="col-md-4">
                                 @*<button class="btn btn-secondary mr-1 btn-raised   "><i class="fa fa-times"></i> Temizle</button>*@
-                                <button class="btn btn-warning mr-1 btn-raised" id="searchDiv" style="margin-top:35px"><i class="fa fa-search"></i> Uygula</button>
+                                <button class="btn btn-warning mr-1 btn-raised" id="searchDiv" style="margin-top:40px"><i class="fa fa-search"></i> Uygula</button>
                                 <!--Buton Hover Effect-->
                                 <style>
                                     .btn-raised {
@@ -149,7 +149,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12">
+                <div class="col-sm-12 mt-5 mr-5">
                     <div class="table-responsive">
 
                         <table id="recordtable" class="table-bordered display dataTable" style="width:100%; font-size:12px;">
@@ -170,7 +170,7 @@
 
                                     <th class="pt-1 pb-1">Temsilci</th>
 
-                                    <th class="pt-1 pb-1">Bölge</th>
+                                    <th class="pt-1 pb-1">İl</th>
                                     <th class="pt-1 pb-1">CariKodu</th>
                                     <th class="pt-1 pb-1">Telefon Numarası</th>
                                     <th class="pt-1 pb-1">
@@ -270,8 +270,29 @@
                     {
 
                         "data": "CallReportDate", className: "text-center", "render": function (data, type, row) {
+                            var dateObj = new Date();
+                            var month = dateObj.getUTCMonth() + 1; //months from 1-12
+                            var day = dateObj.getUTCDate();
+                            var year = dateObj.getUTCFullYear();
+
+                            
+                            aramatarihi = data;
+
+                            const date1 = new Date(month + "/" + day + "/" + year);
+                            const date2 = new Date(data);
+                            const diffTime = Math.abs(date1 - date2);
+                            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                            
+
+                            var html = "<p style='animation:blinker 1s linear infinite;'> &#128222; Aranmalı </p>"
+                            
+
+                            
                             if (data != null && data != "")
-                                return moment(data).format("DD.MM.YYYY");
+                                if (diffDays > 30)
+                                    return moment(data).format("DD.MM.YYYY") + html ;
+                                else
+                                    return moment(data).format("DD.MM.YYYY");
                             else
                                 return "";
                         }
@@ -281,12 +302,13 @@
                     },
                     {
                         "data": "Name"
+                        
                     }, 
                     {
                         "data": "Slsman"
                     }, 
                     {
-                        "data": "Region"
+                        "data": "City"
                     },
                     
                     
@@ -306,7 +328,7 @@
                         "data": "LogoId", className: "text-center", "render": function (data, type, row) {
                             var html = ""
 
-                                + "<a data-logoid='" + data + "' class='btn btn-secondary not' >.</a>"
+                                + "<a data-logoid='" + data + "' class='btn btn-info not' >&#128196;</a>"
 
                             return html;
                         }
@@ -324,13 +346,14 @@
 
                             html = html + `<div class="btn-group">
                                   
-                                  <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
-                                    <span class="sr-only">-></span>
+                                  <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="sr-only">&#10549;</span>
                                   </button>
                                   <div class="dropdown-menu">
+<a class="dropdown-item"  href='/Customer/UpdateCustomer/${data}'>Güncelle</a>
                                     <a class="dropdown-item orders" data-id='${data}' href="#">Siparişler</a>
                                     <a class="dropdown-item cariekstresi" data-CariKodu='${row.CariKodu}' href="#">Cari Ekstresi</a>
-                                    <a class="dropdown-item"  href='/Customer/UpdateCustomer/${data}'>Güncelle</a>
+                                    
                                     ${silhtml}
                                   </div>
                                     </div>`;
@@ -434,6 +457,9 @@
                             //"jQueryUI": true,
                             "stateSave": false,
                             "pagingType": "full_numbers",
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                            },
                             "ajax": {
                                 "url": "/Not/GetDatatables",
                                 "type": "POST",
@@ -628,6 +654,9 @@
                             //"jQueryUI": true,
                             "stateSave": false,
                             "pagingType": "full_numbers",
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                            },
                             "ajax": {
                                 "url": "/Order/GetCustomerOrders",
                                 "type": "POST",
@@ -727,6 +756,9 @@
                                     "lengthChange": true,
                                     //"jQueryUI": true,
                                     "stateSave": false,
+                                    "language": {
+                                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                                    },
                                     buttons: [
 
                                         {
@@ -859,10 +891,10 @@
                 <table id="recordtable2" class="table table-sm table-striped table-bordered dataTable">
                     <thead class="thead-light ">
                         <tr>
-                            <th class="pt-1 pb-1">OrderNo</th>
-                            <th class="pt-1 pb-1">Name</th>
+                            <th class="pt-1 pb-1">Sipariş No</th>
+                            <th class="pt-1 pb-1">İsim</th>
                             <th class="pt-1 pb-1">Sipariş Tutarı</th>
-                            <th class="pt-1 pb-1">OrderDate</th>
+                            <th class="pt-1 pb-1">Sipariş Tarihi</th>
                             <th class="pt-1 pb-1"></th>
 
                         </tr>
@@ -878,7 +910,9 @@
 
         <div class="col-md-12 row">
             <div class="col-md-12">
-                <div class="form-group row p-2 ">
+                <div class="row ">
+                    <div class="col-md-6">
+
                     <label>Durum</label>
                     <select class="form-control " id="notdurum">
                         <option value="">Seçiniz...</option>
@@ -890,15 +924,16 @@
                         }
                      
                     </select>
-                </div>
-                <div class="form-group row p-2 ">
+                    </div>
+                <div class="col-md-3">
                     <textarea class="form-control text"></textarea>
                 </div>
-                <div class="form-group row p-2 ">
+                <div class="col-md-3 " style="margin-top:30px;">
                     <button type="button" class="btn btn-secondary" id="kaydet">Kaydet</button>
                 </div>
+                </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12" style="margin-top:50px;">
                 <div class="table-responsive">
 
                     <table id="recordtablenot" class="table table-sm table-striped table-bordered dataTable">

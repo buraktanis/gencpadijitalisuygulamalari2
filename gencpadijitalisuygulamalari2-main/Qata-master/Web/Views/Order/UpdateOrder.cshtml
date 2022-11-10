@@ -493,6 +493,9 @@
                         //"jQueryUI": true,
                         "stateSave": false,
                         "pagingType": "full_numbers",
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                        },
                         "ajax": {
                             "url": "/Customer/GetCustomerDatatables",
                             "type": "POST",
@@ -601,6 +604,9 @@
                 paging: true,
                 searching: true,
                 stateSave: true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                },
             });
 
             $('#recordtablestok').DataTable({
@@ -612,6 +618,9 @@
                 paging: true,
                 searching: true,
                 stateSave: true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                },
             });
 
             $('#bakiye').click(function () {
@@ -699,6 +708,9 @@
                 //"jQueryUI": true,
                 "stateSave": false,
                 "pagingType": "full_numbers",
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                },
                 "ajax": {
                     "url": "/Order/GetOrderItemByOrderIdDatatables",
                     "type": "POST",
@@ -938,7 +950,7 @@
                         <tr>
                             <th class="pt-1 pb-1">LogoId</th>
                             <th class="pt-1 pb-1">Müşteri Adı</th>
-                            <th class="pt-1 pb-1">CariKodu</th>
+                            <th class="pt-1 pb-1">Cari Kodu</th>
                             <th class="pt-1 pb-1"></th>
                         </tr>
                     </thead>

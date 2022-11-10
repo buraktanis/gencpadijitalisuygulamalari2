@@ -64,10 +64,10 @@
                             </div>
 
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="row " style="padding-top:38px;">
-                                <button class=" col-md-6 btn btn-secondary mr-1 btn-raised   "><i class="fa fa-times"></i> Temizle</button>
-                                <button class="col-md-6 btn btn-warning mr-1 btn-raised" id="searchDiv"><i class="fa fa-search"></i> Uygula</button>
+                                <button class=" col-md-3 btn btn-secondary mr-1 btn-raised   "><i class="fa fa-times"></i> Temizle</button>
+                                <button style="margin-left:10px;" class="col-md-3 btn btn-warning mr-1 btn-raised" id="searchDiv"><i class="fa fa-search"></i> Uygula</button>
                                 <!--Buton Hover Effect-->
                                 <style>
                                     .btn-raised {
@@ -203,16 +203,16 @@
                                 html = `<span>Taslak</span>`;
                             }
                             if (data == 0) {
-                                html = `<span style="background-color:red;">Onaya Gönderildi</span>`;
+                                html = `<span style="">Onaya Gönderildi &#10068;</span>`;
                             }
-                            if (data ==1) {
-                                html = `<span style="background-color:#66ff00;">Logoya Gönderildi</span>`;
+                            if (data == 1) {
+                                html = `<span>Logoya Gönderildi &#9989;</span>`;
                             }
                             if (data == 2) {
-                                html = `<span style="background-color:yellow;">Faturalandı</span>`;
+                                html = `<span style="">Faturalandı &#128221;</span>`;
                             }
                             if (data == 3) {
-                                html = `<span>Red Edildi</span>`;
+                                html = `<span>Red Edildi &#10060;</span>`;
                             }
 
 

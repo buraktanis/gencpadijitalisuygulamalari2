@@ -38,6 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Announcements\duyurular.html" />
     <None Include="wwwroot\volt\html&amp;css\vendor\sass\node_modules\immutable\dist\immutable.es.js" />
     <None Include="wwwroot\volt\html&amp;css\vendor\sass\node_modules\immutable\dist\immutable.js.flow" />
     <None Include="wwwroot\volt\html&amp;css\vendor\sass\node_modules\immutable\dist\immutable.min.js" />
